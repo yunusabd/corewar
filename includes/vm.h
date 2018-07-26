@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 15:57:38 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:12:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_vm		*create_vm(int ac, char **av);
 t_champ		*create_champ(t_vm *vm);
 void		add_champ(t_vm *vm, t_champ *champ);
 void		error_exit(t_vm *vm, char *msg);
+void		free_champ(t_champ *champ);
 
 #endif

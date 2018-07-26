@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 14:06:23 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 15:47:57 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:08:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	error_exit(t_vm *vm, char *msg)
 {
 	printf("%s\n", msg);
+	// TODO free vm struct
 	exit(1);
 }

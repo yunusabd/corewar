@@ -6,25 +6,43 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 16:00:59 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 20:37:51 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		check_magic_number(t_champ *champ, char *buff)
+/*
+**	The magic number gets casted as an int. 
+**	We copy 4 chars from the read buffer as an unsigned char * into the dup var.
+**	Starting from the rightmost of the 4 chars, we compare the 8 bits of each
+**	char to 8 bits of the int with the magic number, while shifting both.
+*/
+
+void	check_magic_number(t_vm *vm, t_champ *champ, char *buff)
 {
-	printf("MAGIC: %x\n", COREWAR_EXEC_MAGIC);
-	if (buff[0] == 0)
-		printf("1 It's the same!\n");
-	if ((unsigned char)buff[1] == 234)
-		printf("2 It's the same!\n");
-	if ((unsigned char)buff[2] == 131)
-		printf("3 It's the same!\n");
-	if ((unsigned char)buff[3] == 243)
-		printf("4 It's the same!\n");
+	unsigned char	*dup;
+	int				magic;
+	int				j;
+	int				i;
+
+	dup = (unsigned char*)ft_strndup_len(buff, 4);
+	magic = (COREWAR_EXEC_MAGIC);
+	i = 3;
+	while (i >= 0)
+	{
+		j = 8;
+		while (j--)
+		{
+			if (!((magic & 1) == (dup[i] & 1)))
+				error_exit(vm, "Wrong magic number");
+			magic = magic >> 1;
+			dup[i] = dup[i] >> 1;
+		}
+		i--;
+	}
 	champ->magic = 1;
-	return (1);
+	free(dup);
 }
 
 int		get_name(t_champ *champ, char *buff)
@@ -50,13 +68,15 @@ int		main(int ac, char **av)
 		champ = create_champ(vm);
 		while ((read_bytes = read(fd, buffer, READ_BUFF_SIZE)) > 0)
 		{
-			if (champ->magic == 0)
-				check_magic_number(champ, buffer);
+			if (champ->magic == 0 && read_bytes > 3)
+				check_magic_number(vm, champ, buffer);
 			if (champ->name == NULL)
 				get_name(champ, buffer);
 		}
 		add_champ(vm, champ);
-		printf("NAME: %s\n", vm->champs->name);
+		champ = NULL;
 	}
+	printf("NAME: %s\n", vm->champs->name);
+//	printf("NAME: %s\n", vm->champs->next->name);
 	return (0);
 }
