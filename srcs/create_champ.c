@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 13:57:21 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 15:54:22 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 21:18:54 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 void	add_champ(t_vm *vm, t_champ *champ)
 {
-	t_champ	*tmp;
-
-	tmp = vm->champs;
-	if (!(tmp))
-		vm->champs = champ;
-	else
-	{
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = champ;
-	}
+	if ((vm->champs))
+		champ->next = vm->champs;
+	vm->champs = champ;
 }
 
 t_champ	*create_champ(t_vm *vm)

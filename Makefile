@@ -6,14 +6,14 @@
 #    By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:52 by yabdulha          #+#    #+#              #
-#    Updated: 2018/07/26 16:12:42 by yabdulha         ###   ########.fr        #
+#    Updated: 2018/07/26 21:06:52 by yabdulha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
 SRC_FILES = main.c add_bytes.c create_vm.c create_champ.c error_handler.c \
-			free_champ.c
+			free_champ.c check_magic_number.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 

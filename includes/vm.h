@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 16:12:25 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 21:11:27 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ t_champ		*create_champ(t_vm *vm);
 void		add_champ(t_vm *vm, t_champ *champ);
 void		error_exit(t_vm *vm, char *msg);
 void		free_champ(t_champ *champ);
+void		check_magic_number(t_vm *vm, t_champ *champ, char *buff);
 
 #endif
