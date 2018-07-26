@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_vm.c                                        :+:      :+:    :+:   */
+/*   create_champ.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 18:56:13 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 15:54:16 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/07/26 13:57:21 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/07/26 15:54:22 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_vm	*create_vm(int ac, char **av)
+void	add_champ(t_vm *vm, t_champ *champ)
 {
-	t_vm	*new;
+	t_champ	*tmp;
 
-	if (!(new = (t_vm*)malloc(sizeof(t_vm))))
-		error_exit(NULL, "Malloc fail in create_vm");
-	ft_bzero(new, sizeof(t_vm));
-	new->ac = ac;
-	new->av = av;
+	tmp = vm->champs;
+	if (!(tmp))
+		vm->champs = champ;
+	else
+	{
+		while (tmp && tmp->next)
+			tmp = tmp->next;
+		tmp->next = champ;
+	}
+}
+
+t_champ	*create_champ(t_vm *vm)
+{
+	t_champ	*new;
+
+	if (!(new = (t_champ*)malloc(sizeof(t_champ))))
+		error_exit(vm, "Malloc fail in create_champ");
+	ft_bzero(new, sizeof(t_champ));
 	return (new);
 }

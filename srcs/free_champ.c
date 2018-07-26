@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_vm.c                                        :+:      :+:    :+:   */
+/*   free_champ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 18:56:13 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 15:54:16 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/07/26 14:27:19 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/07/26 14:29:18 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_vm	*create_vm(int ac, char **av)
+void	free_champ(t_champ *champ)
 {
-	t_vm	*new;
-
-	if (!(new = (t_vm*)malloc(sizeof(t_vm))))
-		error_exit(NULL, "Malloc fail in create_vm");
-	ft_bzero(new, sizeof(t_vm));
-	new->ac = ac;
-	new->av = av;
-	return (new);
+	free(champ->file_name);
+	free(champ->name);
+	//TODO Free bytes list
+	free(champ);
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 12:34:42 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 15:57:38 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+//remove
 # include <stdlib.h>
 # include <unistd.h>
 
-# define READ_BUFF_SIZE	64
+# define READ_BUFF_SIZE	40
 
 typedef struct		s_byte
 {
@@ -30,11 +31,13 @@ typedef struct		s_byte
 
 typedef struct		s_champ
 {
-	char		*file_name;
-	char		*name;
-	int			number;
-	int			size;
-	t_byte		*byte;
+	char			*file_name;
+	short int		magic;
+	char			*name;
+	int				number;
+	int				size;
+	t_byte			*byte;
+	struct s_champ	*next;
 }					t_champ;
 
 typedef struct		s_vm
@@ -48,5 +51,8 @@ typedef struct		s_vm
 
 void		read_bytes(t_champ champ, char *buff, t_byte *head);
 t_vm		*create_vm(int ac, char **av);
+t_champ		*create_champ(t_vm *vm);
+void		add_champ(t_vm *vm, t_champ *champ);
+void		error_exit(t_vm *vm, char *msg);
 
 #endif
