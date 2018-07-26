@@ -6,13 +6,14 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 11:27:31 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 12:34:42 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 # include "op.h"
+# include "../libft/libft.h"
 
 # include <fcntl.h>
 # include <stdio.h>

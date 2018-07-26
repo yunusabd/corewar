@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 11:54:22 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/26 12:21:31 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 int		check_magic_number(char *buff)
 {
 	printf("MAGIC: %x\n", COREWAR_EXEC_MAGIC);
-	printf("MAGIC: %d\n", buff[4]);
-	if (*buff == (COREWAR_EXEC_MAGIC))
-		printf("It's the same!\n");
+	if (buff[0] == 0)
+		printf("1 It's the same!\n");
+	if ((unsigned char)buff[1] == 234)
+		printf("2 It's the same!\n");
+	if ((unsigned char)buff[2] == 131)
+		printf("3 It's the same!\n");
+	if ((unsigned char)buff[3] == 243)
+		printf("4 It's the same!\n");
 	return (1);
 }
 
