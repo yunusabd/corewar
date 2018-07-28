@@ -6,17 +6,11 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/26 21:20:05 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/29 00:10:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int		get_name(t_champ *champ, char *buff)
-{
-	champ->name = ft_strndup(buff + 4, PROG_NAME_LENGTH);
-	return (1);
-}
 
 int		main(int ac, char **av)
 {
@@ -28,11 +22,14 @@ int		main(int ac, char **av)
 	t_champ	*champ;
 
 	vm = create_vm(ac, av);
-	while (ac > 1)
+	while (ac-- > 1)
 	{
+		reader(vm, ac, av[ac]);
+	/*
 		if ((fd = open(av[--ac], O_RDONLY)) < 0)
 			error_exit(vm, "Can't open file");
-		champ = create_champ(vm);
+	 	champ = create_champ(vm);
+		champ->filename = av[ac];
 		while ((read_bytes = read(fd, buffer, READ_BUFF_SIZE)) > 0)
 		{
 			if (champ->magic == 0 && read_bytes > 3)
@@ -42,11 +39,15 @@ int		main(int ac, char **av)
 		}
 		add_champ(vm, champ);
 		champ = NULL;
+	*/
 	}
-	while (vm->champs)
+/*	
+ 	while (vm->champs)
 	{
 		printf("NAME: %s\n", vm->champs->name);
+		printf("FILENAME: %s\n", vm->champs->filename);
 		vm->champs = vm->champs->next;
 	}
+*/
 	return (0);
 }

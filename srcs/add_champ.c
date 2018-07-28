@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_champ.c                                       :+:      :+:    :+:   */
+/*   add_champ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/26 14:27:19 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/28 17:16:11 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/07/28 16:47:04 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/07/28 16:47:45 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	free_champ(t_champ *champ)
+void	add_champ(t_vm *vm, t_champ *champ)
 {
-	free(champ->filename);
-	free(champ->name);
-	//TODO Free bytes list
-	free(champ);
+	if ((vm->champs))
+		champ->next = vm->champs;
+	vm->champs = champ;
 }
