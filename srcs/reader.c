@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/28 23:05:27 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/29 20:06:51 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		reader(t_vm *vm, int no, char *path)
 	if (total_read < 4)
 		error_exit(vm, "File too small");
 	add_champ(vm, champ);
+	vm->players += 1;
 	parse_bytes(vm, champ);
 	return (0);
 }

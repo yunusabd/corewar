@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 21:51:25 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 00:20:37 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/29 19:47:34 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	get_data(t_vm *vm, t_champ *champ)
 		champ->data[i++] = tmp->byte;
 		tmp = tmp->next;
 	}
-	i = 0;
-	while (i < champ->size)
-		printf("%c", (unsigned char)champ->data[i++]);
 }
 
 int		parse_bytes(t_vm *vm, t_champ *champ)

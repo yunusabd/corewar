@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   load_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 20:36:31 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/07/29 19:33:55 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/07/29 20:36:33 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void		load_processes(t_vm *vm)
 {
-	t_vm	*vm;
+	int		i;
+	int		j;
+	int		k;
+	t_champ	*tmp;
 
-	vm = create_vm(ac, av);
-	while (ac-- > 1)
-		reader(vm, ac, av[ac]);
-	load_processes(vm);
-	dump_memory(vm);
-	return (0);
+	tmp = vm->champs;
+	i = 0;
+	j = 0;
+	while (tmp)
+	{
+		i = (MEM_SIZE / (vm->players)) * j;
+		k = 0;
+		while (k < tmp->size)
+		{
+			vm->memory[i] = (unsigned char)tmp->data[k];
+			i++;
+			k++;
+		}
+		j++;
+		tmp = tmp->next;
+	}
 }

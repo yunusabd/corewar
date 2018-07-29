@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 00:00:07 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/29 20:06:36 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_byte
 
 typedef struct		s_champ
 {
+	int				carry;
 	short int		magic;
 	int				number;
 	int				size;
@@ -45,9 +46,10 @@ typedef struct		s_champ
 typedef struct		s_vm
 {
 	int			ac;
+	int			players;
 	char		**av;
 	t_champ		*champs;
-	int			memsize;
+	int			memory[MEM_SIZE];
 
 }					t_vm;
 
@@ -64,4 +66,7 @@ int			parse_bytes(t_vm *vm, t_champ *champ);
 void		get_name(t_vm *vm, t_champ *champ);
 void		get_size(t_vm *vm, t_champ *champ);
 void		get_comment(t_vm *vm, t_champ *champ);
+
+void		dump_memory(t_vm *vm);
+void		load_processes(t_vm *vm);
 #endif
