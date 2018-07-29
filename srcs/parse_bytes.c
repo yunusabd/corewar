@@ -6,13 +6,13 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 21:51:25 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 19:47:34 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/07/29 21:24:27 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	get_data(t_vm *vm, t_champ *champ)
+static void		get_data(t_vm *vm, t_champ *champ)
 {
 	int		i;
 	t_byte	*tmp;
@@ -31,7 +31,7 @@ void	get_data(t_vm *vm, t_champ *champ)
 	}
 }
 
-int		parse_bytes(t_vm *vm, t_champ *champ)
+int				parse_bytes(t_vm *vm, t_champ *champ)
 {
 	if (!(champ->bytes))
 		error_exit(vm, "Empty champ");
