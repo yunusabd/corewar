@@ -14,7 +14,8 @@ NAME = corewar
 
 SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			free_champ.c check_magic_number.c reader.c parse_bytes.c \
-			get_name.c get_comment.c get_size.c dump_memory.c load_process.c 
+			get_name.c get_comment.c get_size.c dump_memory.c \
+			load_process.c init_champs.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 

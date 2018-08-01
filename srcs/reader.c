@@ -42,11 +42,6 @@ void	read_bytes(t_vm *vm, t_champ *champ, char *buff, int len)
 	}
 }
 
-/*
-**	The parser needs to know how many bytes have been read in total, to know
-**	whether the content is the name, comment, or the commands.
-*/
-
 int		reader(t_vm *vm, int no, char *path)
 {
 	int		fd;

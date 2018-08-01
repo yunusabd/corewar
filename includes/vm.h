@@ -35,6 +35,7 @@ typedef struct		s_champ
 	short int		magic;
 	int				number;
 	int				size;
+	int			reg[REG_NUMBER];
 	char			*name;
 	char			*data;
 	char			*comment;
@@ -69,4 +70,5 @@ void		get_comment(t_vm *vm, t_champ *champ);
 
 void		dump_memory(t_vm *vm);
 void		load_processes(t_vm *vm);
+void		init_champs(t_vm *vm);
 #endif

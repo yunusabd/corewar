@@ -20,6 +20,7 @@ int		main(int ac, char **av)
 	while (ac-- > 1)
 		reader(vm, ac, av[ac]);
 	load_processes(vm);
-	dump_memory(vm);
+//	dump_memory(vm);
+	init_champs(vm);
 	return (0);
 }
