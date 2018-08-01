@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 20:36:31 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/02 00:29:57 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int		main(int ac, char **av)
 		reader(vm, ac, av[ac]);
 	load_processes(vm);
 //	dump_memory(vm);
-	init_champs(vm);
+	run_champs(vm);
 	return (0);
 }

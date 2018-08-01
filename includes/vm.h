@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 20:06:36 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/02 00:24:06 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void		get_comment(t_vm *vm, t_champ *champ);
 
 void		dump_memory(t_vm *vm);
 void		load_processes(t_vm *vm);
-void		init_champs(t_vm *vm);
+void		run_champs(t_vm *vm);
 #endif
