@@ -6,7 +6,7 @@
 #    By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:52 by yabdulha          #+#    #+#              #
-#    Updated: 2018/07/29 19:43:08 by yabdulha         ###   ########.fr        #
+#    Updated: 2018/08/02 15:29:09 by yabdulha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = corewar
 SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			free_champ.c check_magic_number.c reader.c parse_bytes.c \
 			get_name.c get_comment.c get_size.c dump_memory.c \
-			load_process.c init_champs.c
+			load_process.c init_champs.c op.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 

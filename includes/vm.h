@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/02 00:24:06 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/02 15:34:46 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct		s_champ
 	short int		magic;
 	int				number;
 	int				size;
-	int			reg[REG_NUMBER];
+	int				reg[REG_NUMBER];
+	int				pc;
 	char			*name;
 	char			*data;
 	char			*comment;
@@ -54,21 +55,35 @@ typedef struct		s_vm
 
 }					t_vm;
 
-//void		read_bytes(t_vm *vm, t_champ champ, char *buff, t_byte *head);
-t_vm		*create_vm(int ac, char **av);
-t_champ		*create_champ(t_vm *vm);
-void		add_champ(t_vm *vm, t_champ *champ);
-void		error_exit(t_vm *vm, char *msg);
-void		free_champ(t_champ *champ);
-void		check_magic_number(t_vm *vm, t_champ *champ, char *buff);
+typedef struct				s_op
+{
+	char					*opname;
+	int						param_count;
+	int						param_type[3];
+	int						opcode;
+	int						cycles;
+	char					*description;
+	int						acb;
+	int						half_size;
+}							t_op;
 
-int			reader(t_vm *vm, int no, char *path);
-int			parse_bytes(t_vm *vm, t_champ *champ);
-void		get_name(t_vm *vm, t_champ *champ);
-void		get_size(t_vm *vm, t_champ *champ);
-void		get_comment(t_vm *vm, t_champ *champ);
+extern t_op			g_op_tab[17];
 
-void		dump_memory(t_vm *vm);
-void		load_processes(t_vm *vm);
-void		run_champs(t_vm *vm);
+t_vm				*create_vm(int ac, char **av);
+t_champ				*create_champ(t_vm *vm);
+void				add_champ(t_vm *vm, t_champ *champ);
+void				error_exit(t_vm *vm, char *msg);
+void				free_champ(t_champ *champ);
+void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
+
+int					reader(t_vm *vm, int no, char *path);
+int					parse_bytes(t_vm *vm, t_champ *champ);
+void				get_name(t_vm *vm, t_champ *champ);
+void				get_size(t_vm *vm, t_champ *champ);
+void				get_comment(t_vm *vm, t_champ *champ);
+
+void				dump_memory(t_vm *vm);
+void				load_processes(t_vm *vm);
+void				run_champs(t_vm *vm);
+
 #endif

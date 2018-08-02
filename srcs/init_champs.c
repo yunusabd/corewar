@@ -6,11 +6,16 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/02 00:24:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/02 14:21:15 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void	get_opcode(t_champ *champ)
+{
+	printf("opcode: %d\n", champ->data[champ->pc]);
+}
 
 void	print_encoding(int n, int i)
 {
@@ -31,14 +36,9 @@ void	get_encoding(char c)
 	int	i;
 
 	i = (sizeof(c) * 8) - 2;
-	while (i >= 0)
+	while (i > 0)
 	{
-		if (((c >> i) & 3) == 3)
-			print_encoding(3, i);
-		else if (((c >> i) & 1) == 1)
-			print_encoding(1, i);
-		else if (((c >> i) & 2) == 2)
-			print_encoding(2, i);
+		print_encoding(((c >> i) & 3), i);
 		printf("\n");
 		i -= 2;
 	}
@@ -52,6 +52,7 @@ void	run_champs(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
+		get_opcode(tmp);
 		get_encoding(tmp->data[1]);
 		tmp = tmp->next;
 	}

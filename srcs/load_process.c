@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:33:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/29 20:36:33 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/02 14:17:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		load_processes(t_vm *vm)
 	while (tmp)
 	{
 		i = (MEM_SIZE / (vm->players)) * j;
+		tmp->pc = i;
 		k = 0;
 		while (k < tmp->size)
 		{
