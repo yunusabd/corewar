@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/03 01:32:16 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/04 22:41:23 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_champ
 	int				number;
 	int				size;
 	int				op;
-	int				reg[REG_NUMBER];
+	intmax_t		reg[REG_NUMBER];
 	int				pc;
 	int				pc_tmp;
 	char			*name;
@@ -96,6 +96,8 @@ void				dump_memory(t_vm *vm);
 void				load_processes(t_vm *vm);
 void				run_champs(t_vm *vm);
 void				move_pc(int *pc, int n);
+
+int					check_reg(int reg);
 
 t_exec				*init_exec(t_vm *vm);
 void				op_sti(t_vm *vm, t_champ *champ, t_exec *exec);

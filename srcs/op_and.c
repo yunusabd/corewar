@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   op_and.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/04 19:23:56 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/04 22:43:07 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/04 22:50:23 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
+void	op_and(t_vm *vm, t_champ *champ)
 {
-	t_vm	*vm;
-
-	vm = create_vm(ac, av);
-	while (ac-- > 1)
-		reader(vm, ac, av[ac]);
-	load_processes(vm);
-	dump_memory(vm);
-	run_champs(vm);
-	dump_memory(vm);
-	return (0);
+	champ->pc_tmp = champ->pc;
+	get_encoding(move_pc(&(champ->pc_tmp), 1));
 }
