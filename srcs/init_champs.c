@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 21:02:05 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 21:52:13 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,13 @@ void	run_champs(t_vm *vm)
 			op_sti(vm, tmp);
 			tmp->pc = tmp->pc_tmp;
 		}
-//		if (tmp->op == 6)
-//			op_and(vm, tmp);
+		else if (tmp->op == 6)
+		{
+			move_pc(&(tmp->pc), 1);
+			tmp->encoding_byte = vm->memory[tmp->pc];
+			op_and(vm, tmp);
+			tmp->pc = tmp->pc_tmp;
+		}
 		tmp = tmp->next;
 	}
 }

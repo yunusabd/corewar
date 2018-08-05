@@ -5,48 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/04 22:43:07 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 20:49:31 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/05 22:05:35 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int		get_reg(t_vm *vm, int pc)
+void	op_and(t_vm *vm, t_champ *champ)
 {
-	return (vm->memory[pc]);
-}
+	t_params	*p;
 
-/*
-**	Read the parameters according to the encoding byte. If it is a register,
-**	read one octet, for direct or indirect read two octets.
-*/
-
-void			get_params(t_vm *vm, t_champ *champ)
-{
-	int		i;
-	int		*j;
-
-	champ->params = init_params(vm);
-	champ->pc_tmp = champ->pc;
-	move_pc(&(champ->pc_tmp), 1);
-	i = (sizeof(char) * (8 - 2));
-	j = &(champ->params->p1);
-	while (i > 0)
-	{
-		if (((champ->encoding_byte >> i) & 3) > 1)
-		{
-			*j = add_two_octets(vm, champ->pc_tmp);
-			move_pc(&(champ->pc_tmp), 2);
-		}
-		else if (((champ->encoding_byte >> i) & 3) == 1)
-		{
-			*j = get_reg(vm, champ->pc_tmp);
-			move_pc(&(champ->pc_tmp), 1);
-		}
-		else
-			break;
-		i -= 2;
-		j++;
-	}
+	get_params(vm, champ);
+	p = champ->params;
+	printf("p1: %d, p2: %d, p3: %d\n", p->p1, p->p2, p->p3);
+	resolve_params(vm, champ, champ->params, 3);
+	p = champ->params;
+	printf("p1: %d, p2: %d, p3: %d\n", p->p1, p->p2, p->p3);
+	champ->reg[check_reg(p->p3)] = p->p1 & p->p2;
+	printf("Wrote result [%d] into reg [%d]\n", p->p3, p->p1 & p->p2);
 }
