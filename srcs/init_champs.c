@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/04 22:48:07 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 19:05:09 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,19 @@ void	print_encoding(int n, int i)
 	printf("%s: %s\n", pos, type[n - 1]);
 }
 
-void	get_encoding(char c)
+void	get_encoding(t_champ *champ, char c)
 {
 	int	i;
 
 	i = (sizeof(c) * 8) - 2;
-	while (i > 0)
+/*	while (i > 0)
 	{
 		print_encoding(((c >> i) & 3), i);
 		printf("\n");
 		i -= 2;
 	}
 	printf("[%.2x]", c);
+	*/
 }
 
 void	run_champs(t_vm *vm)
@@ -58,11 +59,13 @@ void	run_champs(t_vm *vm)
 		get_opcode(vm, tmp);
 		if (tmp->op == 11)
 		{
-			get_encoding(move_pc(&(tmp->pc), 1));
-			op_sti(vm, tmp, init_exec(vm));
+			get_encoding(tmp, vm->memory[tmp->pc]);
+			move_pc(&(tmp->pc), 1);
+			tmp->encoding_byte = vm->memory[tmp->pc];
+			op_sti(vm, tmp);
 		}
-		if (tmp->op == 6)
-			op_and(vm, tmp);
+//		if (tmp->op == 6)
+//			op_and(vm, tmp);
 		tmp = tmp->next;
 	}
 }

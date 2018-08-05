@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/04 22:41:23 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 19:04:43 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct		s_byte
 	struct s_byte		*next;
 }					t_byte;
 
+typedef	struct		s_exec
+{
+	int			opcode;
+	int			p1;
+	int			p2;
+	int			p3;
+}					t_exec;
+
 typedef struct		s_champ
 {
 	int				carry;
@@ -36,9 +44,11 @@ typedef struct		s_champ
 	int				number;
 	int				size;
 	int				op;
+	int				encoding_byte;
 	intmax_t		reg[REG_NUMBER];
 	int				pc;
 	int				pc_tmp;
+	t_exec			*exec;
 	char			*name;
 	char			*data;
 	char			*comment;
@@ -56,14 +66,6 @@ typedef struct		s_vm
 	int			memory[MEM_SIZE];
 
 }					t_vm;
-
-typedef	struct		s_exec
-{
-	int			opcode;
-	int			dest;
-	int			src;
-	int			res;
-}					t_exec;
 
 typedef struct				s_op
 {
@@ -97,8 +99,10 @@ void				load_processes(t_vm *vm);
 void				run_champs(t_vm *vm);
 void				move_pc(int *pc, int n);
 
+void				get_params(t_vm *vm, t_champ *champ);
 int					check_reg(int reg);
-
+int					add_two_octets(t_vm *vm, int pc);
 t_exec				*init_exec(t_vm *vm);
-void				op_sti(t_vm *vm, t_champ *champ, t_exec *exec);
+void				get_encoding(t_champ *champ, char c);
+void				op_sti(t_vm *vm, t_champ *champ);
 #endif

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 01:03:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/04 22:41:17 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 19:06:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,20 @@ int		add_two_octets(t_vm *vm, int pc)
 **	parameter will be copied.
 */
 
-/*
-**	Jump two spaces to first parameter (register)
-*/
-
-void	op_sti(t_vm *vm, t_champ *champ, t_exec *exec)
+void	op_sti(t_vm *vm, t_champ *champ)
 {
 	int		i;
 
+	get_params(vm, champ);
 	champ->pc_tmp = champ->pc;
-	move_pc(&(champ->pc_tmp), 2);
-	exec->src = vm->memory[champ->pc_tmp];
-	exec->res = add_two_octets(vm, champ->pc_tmp + 1);
-	exec->res += add_two_octets(vm, champ->pc_tmp + 3);
-	champ->pc_tmp = champ->pc;
-	move_pc(&(champ->pc_tmp), exec->res + REG_SIZE - 1);
+	champ->exec->p2 += champ->exec->p3;
+	move_pc(&(champ->pc_tmp), champ->exec->p2 + REG_SIZE - 1);
 	i = 0;
 	while (i < REG_SIZE)
 	{
-		vm->memory[champ->pc_tmp - i]
-			= (champ->reg[check_reg(exec->src)] >> 8 * i) & 255;
+		move_pc(&(champ->pc_tmp), -1);
+		vm->memory[champ->pc_tmp]
+			= (champ->reg[check_reg(champ->exec->p1)] >> 8 * i) & 255;
 		i++;
 	}
 }
