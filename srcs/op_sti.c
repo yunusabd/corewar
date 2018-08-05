@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_op.c                                          :+:      :+:    :+:   */
+/*   op_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/03 01:03:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 19:06:20 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/05 21:33:18 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int		add_two_octets(t_vm *vm, int pc)
-{
-	int	res;
-
-	res = vm->memory[pc];
-	res = res << 8;
-	move_pc(&pc, 1);
-	res |= vm->memory[pc];
-	return (res);
-}
 
 /*
 **	Take a registry, and two indexes (potentially registries) add the two
@@ -32,17 +21,21 @@ int		add_two_octets(t_vm *vm, int pc)
 void	op_sti(t_vm *vm, t_champ *champ)
 {
 	int		i;
+	int		tmp;
 
 	get_params(vm, champ);
-	champ->pc_tmp = champ->pc;
-	champ->exec->p2 += champ->exec->p3;
-	move_pc(&(champ->pc_tmp), champ->exec->p2 + REG_SIZE - 1);
+	printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
+	resolve_params(vm, champ, champ->params);
+	printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
+	tmp = champ->pc;
+	champ->params->p2 += champ->params->p3;
+	move_pc(&(tmp), champ->params->p2 + REG_SIZE - 1);
 	i = 0;
 	while (i < REG_SIZE)
 	{
-		move_pc(&(champ->pc_tmp), -1);
-		vm->memory[champ->pc_tmp]
-			= (champ->reg[check_reg(champ->exec->p1)] >> 8 * i) & 255;
+		move_pc(&(tmp), -1);
+		vm->memory[tmp] = (champ->params->p1 >> 8 * i) & 255;
+//			= (champ->reg[check_reg(champ->params->p1)] >> 8 * i) & 255;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 19:04:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 21:19:06 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,29 @@
 
 # define READ_BUFF_SIZE	40
 
+#define RED		"\x1B[31m"
+#define GRN		"\x1B[32m"
+#define YEL		"\x1B[33m"
+#define BLU		"\x1B[34m"
+#define MAG		"\x1B[35m"
+#define CYN		"\x1B[36m"
+#define WHT		"\x1B[37m"
+#define RESET	"\x1B[0m"
+
 typedef struct		s_byte
 {
 	char				byte;
 	struct s_byte		*next;
 }					t_byte;
 
-typedef	struct		s_exec
+typedef	struct		s_params
 {
 	int			opcode;
+	int			encoding_byte;
 	int			p1;
 	int			p2;
 	int			p3;
-}					t_exec;
+}					t_params;
 
 typedef struct		s_champ
 {
@@ -48,7 +58,7 @@ typedef struct		s_champ
 	intmax_t		reg[REG_NUMBER];
 	int				pc;
 	int				pc_tmp;
-	t_exec			*exec;
+	t_params		*params;
 	char			*name;
 	char			*data;
 	char			*comment;
@@ -102,7 +112,7 @@ void				move_pc(int *pc, int n);
 void				get_params(t_vm *vm, t_champ *champ);
 int					check_reg(int reg);
 int					add_two_octets(t_vm *vm, int pc);
-t_exec				*init_exec(t_vm *vm);
-void				get_encoding(t_champ *champ, char c);
+t_params			*init_params(t_vm *vm);
+void				resolve_params(t_vm *vm, t_champ *champ, t_params *param);
 void				op_sti(t_vm *vm, t_champ *champ);
 #endif

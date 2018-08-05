@@ -6,28 +6,33 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 22:43:07 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 19:04:20 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/05 20:49:31 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		get_reg(t_vm *vm, int pc)
+static int		get_reg(t_vm *vm, int pc)
 {
 	return (vm->memory[pc]);
 }
 
-void	get_params(t_vm *vm, t_champ *champ)
+/*
+**	Read the parameters according to the encoding byte. If it is a register,
+**	read one octet, for direct or indirect read two octets.
+*/
+
+void			get_params(t_vm *vm, t_champ *champ)
 {
 	int		i;
 	int		*j;
 
-	champ->exec = init_exec(vm);
+	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
 	move_pc(&(champ->pc_tmp), 1);
-	i = (sizeof(char) * 8);
-	j = &(champ->exec->p1);
-	while (i -= 2 > 0)
+	i = (sizeof(char) * (8 - 2));
+	j = &(champ->params->p1);
+	while (i > 0)
 	{
 		if (((champ->encoding_byte >> i) & 3) > 1)
 		{
@@ -40,7 +45,8 @@ void	get_params(t_vm *vm, t_champ *champ)
 			move_pc(&(champ->pc_tmp), 1);
 		}
 		else
-			move_pc(&(champ->pc_tmp), 2);
+			break;
+		i -= 2;
 		j++;
 	}
 }
