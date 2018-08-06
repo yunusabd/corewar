@@ -5,4 +5,4 @@ Current status:
 
 ![Progress](https://i.imgur.com/KharTsa.png "Progress")
 
-Loading champions into virtual machine and dumping inital state.
+Loading champions into virtual machine - executing STI, AND, LIVE, ZJMP commands - dumping each cycle for a simple visualizer
