@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 21:52:13 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 13:56:40 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	get_opcode(t_vm *vm, t_champ *champ)
 {
-	champ->op = vm->memory[champ->pc];
+	champ->opcode = vm->memory[champ->pc];
 	printf("\npc: %d\n", champ->pc);
-	printf("OP: %d\n", champ->op);
+	printf("OP: %d\n", champ->opcode);
 	printf("operation: %s\n", g_op_tab[vm->memory[champ->pc] - 1].opname);
 }
 
@@ -42,14 +42,14 @@ void	run_champs(t_vm *vm)
 	while (tmp)
 	{
 		get_opcode(vm, tmp);
-		if (tmp->op == 11)
+		if (tmp->opcode == 11)
 		{
 			move_pc(&(tmp->pc), 1);
 			tmp->encoding_byte = vm->memory[tmp->pc];
 			op_sti(vm, tmp);
 			tmp->pc = tmp->pc_tmp;
 		}
-		else if (tmp->op == 6)
+		else if (tmp->opcode == 6)
 		{
 			move_pc(&(tmp->pc), 1);
 			tmp->encoding_byte = vm->memory[tmp->pc];

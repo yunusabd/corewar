@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 22:04:46 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 15:01:35 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	op_sti(t_vm *vm, t_champ *champ)
 	int		tmp;
 
 	get_params(vm, champ);
-	resolve_params(vm, champ, champ->params, 6);
+	resolve_params(vm, champ, champ->params, 3);
 	tmp = champ->pc;
 	champ->params->p2 += champ->params->p3;
 	move_pc(&(tmp), champ->params->p2 + REG_SIZE - 1);

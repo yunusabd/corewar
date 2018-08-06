@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/05 22:03:40 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 15:05:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ typedef	struct		s_params
 
 typedef struct		s_champ
 {
-	int				carry;
 	short int		magic;
-	int				number;
-	int				size;
-	int				op;
+	int				carry;
 	int				encoding_byte;
-	intmax_t		reg[REG_NUMBER];
+	int				number;
+	int				opcode;
 	int				pc;
 	int				pc_tmp;
+	int				size;
+	intmax_t		reg[REG_NUMBER];
 	t_params		*params;
 	char			*name;
 	char			*data;
