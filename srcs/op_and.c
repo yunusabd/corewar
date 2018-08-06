@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 15:47:41 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 22:39:43 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	op_and(t_vm *vm, t_champ *champ)
 	resolve_params(vm, champ, champ->params, 3);
 	p = champ->params;
 	champ->reg[check_reg(p->p3)] = p->p1 & p->p2;
+    champ->cycles = g_op_tab[champ->opcode].cycles;
 	champ->carry = 1;
 }

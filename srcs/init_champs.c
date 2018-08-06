@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 13:56:40 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 23:03:39 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,16 @@ void	run_champs(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
-		get_opcode(vm, tmp);
+		if ((tmp->cycles))
+		{
+			tmp->cycles--;
+			printf("PROCESS CYCLE --: %d\n", tmp->cycles);
+		}
+		else
+		{
+			get_opcode(vm, tmp);
+			printf("PROCESS CYCLE: %d\n", tmp->cycles);
+		}
 		if (tmp->opcode == 11)
 		{
 			move_pc(&(tmp->pc), 1);
@@ -56,11 +65,20 @@ void	run_champs(t_vm *vm)
 			op_and(vm, tmp);
 			tmp->pc = tmp->pc_tmp;
 		}
+		else if (tmp->opcode == 1)
+		{
+			move_pc(&(tmp->pc), 1);
+			op_live(vm, tmp);
+			tmp->pc = tmp->pc_tmp;
+		}
+		else if (tmp->opcode == 9)
+			op_zjmp(vm, tmp);
+		if (tmp->opcode)
+		{
+			free(tmp->params);
+			tmp->params = NULL;
+		}
+		tmp->opcode = 0;
 		tmp = tmp->next;
 	}
-}
-
-void	param_handler(t_vm *vm)
-{
-
 }

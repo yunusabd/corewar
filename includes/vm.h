@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 15:05:56 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/06 22:55:45 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 
 # define READ_BUFF_SIZE	40
 
+# define CLEAR			"\x1b[H\x1b[2J"
+# define CUR_RESET		"\x1b[H\x1b[?25l"
+# define SHOW_CURSOR	"\x1b[?12;25h"
+
+#define BLK		"\x1B[30m"
 #define RED		"\x1B[31m"
 #define GRN		"\x1B[32m"
 #define YEL		"\x1B[33m"
@@ -31,6 +36,16 @@
 #define CYN		"\x1B[36m"
 #define WHT		"\x1B[37m"
 #define RESET	"\x1B[0m"
+
+#define BRESET	"\x1B[40m"
+#define BRED	"\x1B[41m"
+#define BGRN	"\x1B[42m"
+#define BYEL	"\x1B[43m"
+#define BBLU	"\x1B[44m"
+#define BMAG	"\x1B[45m"
+#define BCYN	"\x1B[46m"
+#define BWHT	"\x1B[47m"
+
 
 typedef struct		s_byte
 {
@@ -51,12 +66,14 @@ typedef struct		s_champ
 {
 	short int		magic;
 	int				carry;
+	int				cycles;
 	int				encoding_byte;
 	int				number;
 	int				opcode;
 	int				pc;
 	int				pc_tmp;
 	int				size;
+	int				start;
 	intmax_t		reg[REG_NUMBER];
 	t_params		*params;
 	char			*name;
@@ -70,6 +87,7 @@ typedef struct		s_champ
 typedef struct		s_vm
 {
 	int			ac;
+	int			cycles;
 	int			players;
 	char		**av;
 	t_champ		*champs;
@@ -105,6 +123,7 @@ void				get_size(t_vm *vm, t_champ *champ);
 void				get_comment(t_vm *vm, t_champ *champ);
 
 void				dump_memory(t_vm *vm);
+void				dump_handler(t_vm *vm);
 void				load_processes(t_vm *vm);
 void				run_champs(t_vm *vm);
 void				move_pc(int *pc, int n);
@@ -115,6 +134,9 @@ int					add_two_octets(t_vm *vm, int pc);
 t_params			*init_params(t_vm *vm);
 void				resolve_params(t_vm *vm, t_champ *champ, t_params *param,
 		int n);
+void				get_direct(t_vm *vm, t_champ *champ, int *j);
 void				op_sti(t_vm *vm, t_champ *champ);
 void				op_and(t_vm *vm, t_champ *champ);
+void				op_live(t_vm *vm, t_champ *champ);
+void				op_zjmp(t_vm *vm, t_champ *champ);
 #endif

@@ -6,7 +6,7 @@
 #    By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:52 by yabdulha          #+#    #+#              #
-#    Updated: 2018/08/05 22:02:09 by yabdulha         ###   ########.fr        #
+#    Updated: 2018/08/06 18:50:14 by yabdulha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			free_champ.c check_magic_number.c reader.c parse_bytes.c \
 			get_name.c get_comment.c get_size.c dump_memory.c \
 			load_process.c init_champs.c op.c op_sti.c move_pc.c init_params.c \
-			check_reg.c op_and.c add_two_octets.c resolve_params.c get_params.c 
+			check_reg.c op_and.c add_two_octets.c resolve_params.c \
+			get_params.c op_live.c op_zjmp.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 
