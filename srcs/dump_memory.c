@@ -6,11 +6,23 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 23:06:15 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/07 00:29:57 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+
+static void	print_logo()
+{
+	printf(MAG);
+	printf("		       __________  ____  _______       _____    ____ \n");
+	printf("		     / ____/ __ \\/ __ \\/ ____| |     / /   |  / __ \\\n");
+	printf("		   / /   / / / / /_/ / __/  | | /| / / /| | / /_/ /\n");
+	printf("		  / /___/ /_/ / _, _/ /___  | |/ |/ / ___ |/ _, _/ \n");
+	printf("		  \\____/\\____/_/ |_/_____/  |__/|__/_/  |_/_/ |_|  \n");
+	printf(RESET);
+}
 
 void		dump_vm(t_vm *vm)
 {
@@ -21,13 +33,12 @@ void		dump_vm(t_vm *vm)
 	champ = vm->champs;
 	while (champ)
 	{
-		printf("PROCESS CYCLE: %d\n", champ->cycles);
+		printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
 		champ = champ->next;
 		i++;
 	}
 	printf("AC: %d\n", vm->ac);
 	printf("PLAYERS: %d\n", vm->players);
-	printf("CHAMPS: %d\n", i);
 	printf("CYCLES: %d\n", vm->cycles);
 }
 
@@ -38,6 +49,7 @@ void		dump_memory(t_vm *vm)
 
 	tmp = vm->champs;
 	i = 0;
+	print_logo();
 	dump_vm(vm);
 	while(i < MEM_SIZE)
 	{

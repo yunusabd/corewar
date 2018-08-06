@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_and.c                                           :+:      :+:    :+:   */
+/*   op_ld.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 00:01:01 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/06 23:51:11 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/07 00:10:11 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@
 **	result in the register, that is the third parameter.
 */
 
-void	op_and(t_vm *vm, t_champ *champ)
+void	op_ld(t_vm *vm, t_champ *champ)
 {
 	t_params	*p;
 
 	get_params(vm, champ);
-	p = champ->params;
-	resolve_params(vm, champ, champ->params, 3);
-	p = champ->params;
-	champ->reg[check_reg(p->p3)] = p->p1 & p->p2;
+	champ->reg[check_reg(champ->params->p2)] = champ->params->p1;
     champ->cycles = g_op_tab[champ->opcode - 1].cycles;
 	champ->carry = 1;
 }
