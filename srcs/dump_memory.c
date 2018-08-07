@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 00:29:57 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/07 18:19:46 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_logo()
 	printf("		     / ____/ __ \\/ __ \\/ ____| |     / /   |  / __ \\\n");
 	printf("		   / /   / / / / /_/ / __/  | | /| / / /| | / /_/ /\n");
 	printf("		  / /___/ /_/ / _, _/ /___  | |/ |/ / ___ |/ _, _/ \n");
-	printf("		  \\____/\\____/_/ |_/_____/  |__/|__/_/  |_/_/ |_|  \n");
+	printf("		  \\____/\\____/_/ |_/_____/  |__/|__/_/  |_/_/ |_|  \n\n");
 	printf(RESET);
 }
 
@@ -34,10 +34,14 @@ void		dump_vm(t_vm *vm)
 	while (champ)
 	{
 		printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
+		while (i < REG_NUMBER)
+		{
+			printf("|%d|", champ->reg[i]);
+			i++;
+		}
 		champ = champ->next;
-		i++;
 	}
-	printf("AC: %d\n", vm->ac);
+	printf("\nAC: %d\n", vm->ac);
 	printf("PLAYERS: %d\n", vm->players);
 	printf("CYCLES: %d\n", vm->cycles);
 }

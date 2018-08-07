@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 23:55:55 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/07 18:55:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,6 @@ void				op_and(t_vm *vm, t_champ *champ);
 void				op_live(t_vm *vm, t_champ *champ);
 void				op_zjmp(t_vm *vm, t_champ *champ);
 void				op_ld(t_vm *vm, t_champ *champ);
+void				op_add(t_vm *vm, t_champ *champ);
+void				op_fork(t_vm *vm, t_champ *champ);
 #endif

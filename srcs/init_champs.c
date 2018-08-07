@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 00:30:42 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/07 18:47:07 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,19 @@ void	run_champs(t_vm *vm)
 			move_pc(&(tmp->pc), 1);
 			tmp->encoding_byte = vm->memory[tmp->pc];
 			op_ld(vm, tmp);
+			tmp->pc = tmp->pc_tmp;
+		}
+		else if (tmp->opcode == 12)
+		{
+			move_pc(&(tmp->pc), 1);
+			op_fork(vm, tmp);
+			tmp->pc = tmp->pc_tmp;
+		}
+		else if (tmp->opcode == 4)
+		{
+			move_pc(&(tmp->pc), 1);
+			tmp->encoding_byte = vm->memory[tmp->pc];
+			op_add(vm, tmp);
 			tmp->pc = tmp->pc_tmp;
 		}
 		else if (tmp->opcode == 1)
