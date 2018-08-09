@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 22:39:31 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:46:17 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	op_sti(t_vm *vm, t_champ *champ)
 		vm->memory[tmp] = (champ->params->p1 >> 8 * i) & 255;
 		i++;
 	}
-    champ->cycles = g_op_tab[champ->opcode - 1].cycles;
 }

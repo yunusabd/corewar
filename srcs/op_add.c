@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:12:20 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 18:23:55 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:44:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void		op_add(t_vm *vm, t_champ *champ)
 	p = champ->params;
 	champ->reg[check_reg(champ->params->p3)] = champ->params->p1
 		+ champ->params->p2;
-	champ->cycles = g_op_tab[champ->opcode - 1].cycles;
 	champ->carry = 1;
 }

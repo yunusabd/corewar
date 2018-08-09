@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 00:08:50 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:57:34 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 int		main(int ac, char **av)
 {
 	t_vm	*vm;
+	int		i;
 
 	vm = create_vm(ac, av);
 	while (ac-- > 1)
 		reader(vm, ac, av[ac]);
 	load_processes(vm);
 	printf(CLEAR);
-	while (vm->cycles++ < 200)
+	i = 0;
+	while (vm->cycles++ < 1000)
 	{
 		run_champs(vm);
-		dump_handler(vm);
+		if (i < vm->cycles)
+			dump_handler(vm);
 	}
 	return (0);
 }

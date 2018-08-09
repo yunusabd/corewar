@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 18:19:46 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:37:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		dump_memory(t_vm *vm)
 
 void		dump_handler(t_vm *vm)
 {
-	if (!(vm->cycles % 20))
+//	if (!(vm->cycles % 20))
 		printf(CLEAR);
 	printf(CUR_RESET);
 	dump_memory(vm);

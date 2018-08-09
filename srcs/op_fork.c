@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 19:35:26 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:46:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,26 @@ static void	insert_champ(t_vm *vm, t_champ *champ)
 	i = 0;
 	while (i < champ->size)
 	{
-		printf("%.2x ", (unsigned char)champ->data[i]);
 		vm->memory[champ->pc + i] = (unsigned char)champ->data[i];
 		i++;
 	}
 	usleep(100000);
 }
 
-void	op_fork(t_vm *vm, t_champ *champ)
+void		op_fork(t_vm *vm, t_champ *champ)
 {
 	t_champ	*new;
 
-	if (!(new = (t_champ*)malloc(sizeof(t_champ))))
-		error_exit(vm, "Malloc fail in op_fork");
-	if (!(new = ft_memcpy(new, champ, sizeof(champ))))
-		error_exit(vm, "Malloc fail in op_fork");
-	new->data = ft_strdup(champ->data);
+	new = create_champ(vm);
+	memcpy((void*)new, (void*)champ, sizeof(t_champ));
+	if (!(new->data = ft_strnew(champ->size)))
+		error_exit(vm, "Error in op_fork");
+	ft_memcpy((void*)new->data, (void*)champ->data, champ->size);
 	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
 	get_direct(vm, champ, &(champ->params->p1));
-    champ->cycles = g_op_tab[champ->opcode - 1].cycles;
 	move_pc(&(new->pc), champ->params->p1 % IDX_MOD);
-	printf("new position: %d\n", new->pc);
-	printf("data: %d\n", new->data[0]);
 	insert_champ(vm, new);
 	add_champ(vm, new);
-	printf("PLAYER %d FORKED\n", champ->params->p1);
+	printf("PLAYER %d FORKED\n", champ->number);
 }
