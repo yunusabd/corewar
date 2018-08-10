@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 15:43:08 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/10 15:55:49 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ void				get_direct(t_vm *vm, t_champ *champ, int *j);
 void				op_sti(t_vm *vm, t_champ *champ);
 void				op_st(t_vm *vm, t_champ *champ);
 void				op_and(t_vm *vm, t_champ *champ);
+void				op_or(t_vm *vm, t_champ *champ);
+void				op_xor(t_vm *vm, t_champ *champ);
 void				op_live(t_vm *vm, t_champ *champ);
 void				op_zjmp(t_vm *vm, t_champ *champ);
 void				op_ld(t_vm *vm, t_champ *champ);
