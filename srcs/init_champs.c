@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/09 19:01:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/10 15:45:54 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	run_champs(t_vm *vm)
 {
 	int		o;
 	t_champ	*tmp;
-	void	(*f[16])(t_vm *vm, t_champ *champ) = { 0, op_live, op_ld, 0, op_add,
-		0, op_and, 0, 0, op_zjmp, 0, op_sti, op_fork, 0, 0, 0 };
+	void	(*f[16])(t_vm *vm, t_champ *champ) = { 0, op_live, op_ld, op_st,
+		op_add, 0, op_and, 0, 0, op_zjmp, 0, op_sti, op_fork, 0, 0, 0 };
 
 	tmp = vm->champs;
 	while (tmp)
@@ -52,7 +52,7 @@ void	run_champs(t_vm *vm)
 		if (tmp->opcode && !tmp->cycles)
 		{
 			o = tmp->opcode;
-			if (o == 11 || o == 6 || o == 2 || o == 4)
+			if (o == 11 || o == 6 || o == 2 || o == 4 || o == 3 || o == 5)
 			{
 				move_pc(&(tmp->pc), 1);
 				tmp->encoding_byte = vm->memory[tmp->pc];
