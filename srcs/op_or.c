@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 15:47:52 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/10 16:11:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	result in the register, that is the third parameter.
 */
 
-void	op_and(t_vm *vm, t_champ *champ)
+void	op_or(t_vm *vm, t_champ *champ)
 {
 	t_params	*p;
 
