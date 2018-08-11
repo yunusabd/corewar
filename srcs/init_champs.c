@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 16:20:50 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 20:53:44 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ void	run_champs(t_vm *vm)
 		if (tmp->opcode && !tmp->cycles)
 		{
 			o = tmp->opcode;
-			if (o == 11 || o == 6 || o == 2 || o == 4 || o == 3 || o == 5)
+			if (o == 11 || o == 6 || o == 2 || o == 4 || o == 3 || o == 5
+					|| o == 7 || o == 8)
 			{
-				move_pc(&(tmp->pc), 1);
-				tmp->encoding_byte = vm->memory[tmp->pc];
+				tmp->pc_tmp = tmp->pc;
+				move_pc(&(tmp->pc_tmp), 1);
+				tmp->encoding_byte = vm->memory[tmp->pc_tmp];
+				get_params(vm, tmp);
 				f[tmp->opcode](vm, tmp);
 				tmp->pc = tmp->pc_tmp;
 			}
@@ -69,7 +72,11 @@ void	run_champs(t_vm *vm)
 				tmp->pc = tmp->pc_tmp;
 			}
 			else if (tmp->opcode == 9)
+			{
+				move_pc(&(tmp->pc), 1);
 				op_zjmp(vm, tmp);
+				tmp->pc = tmp->pc_tmp;
+			}
 			else if (tmp->opcode == 12)
 			{
 				move_pc(&(tmp->pc), 1);

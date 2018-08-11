@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 16:11:33 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 18:20:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	op_xor(t_vm *vm, t_champ *champ)
 {
 	t_params	*p;
 
-	get_params(vm, champ);
 	p = champ->params;
 	resolve_params(vm, champ, champ->params, 3);
 	p = champ->params;

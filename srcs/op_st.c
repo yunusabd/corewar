@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 15:13:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 15:44:07 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 18:20:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	op_st(t_vm *vm, t_champ *champ)
 {
 	int		i;
 
-	get_params(vm, champ);
 	resolve_params(vm, champ, champ->params, 1);
 	if ((champ->encoding_byte & 48) == 16)
 		champ->reg[check_reg(champ->params->p2)] = champ->params->p1;

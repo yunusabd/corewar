@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:42 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 15:43:15 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 20:04:26 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,21 @@ void			get_reg(t_vm *vm, t_champ *champ, int *j)
 }
 
 /*
-**	Check the op_tab if the direct parameter is 4 or 2 octets.
+**	Check the op_tab if the direct parameter is 4 or 2 octets and read octets
+**	accordingly.
 */
 
 void			get_direct(t_vm *vm, t_champ *champ, int *j)
 {
 	if ((g_op_tab[champ->opcode - 1].half_size) == 1)
-	{
-		*j = add_two_octets(vm, champ->pc_tmp);
-		move_pc(&(champ->pc_tmp), 2);
-	}
+		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE / 2);
 	else
-	{
-		*j = add_two_octets(vm, champ->pc_tmp);
-		move_pc(&(champ->pc_tmp), 2);
-		*j = add_two_octets(vm, champ->pc_tmp);
-		move_pc(&(champ->pc_tmp), 2);
-	}
+		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE);
 }
 
 void			get_indirect(t_vm *vm, t_champ *champ, int *j)
 {
-	*j = add_two_octets(vm, champ->pc_tmp);
-	move_pc(&(champ->pc_tmp), 2);
+	*j = add_next_octets(vm, &(champ->pc_tmp), IND_SIZE);
 }
 
 /*
@@ -56,7 +48,6 @@ void			get_params(t_vm *vm, t_champ *champ)
 	int		*j;
 
 	champ->params = init_params(vm);
-	champ->pc_tmp = champ->pc;
 	move_pc(&(champ->pc_tmp), 1);
 	i = (sizeof(char) * (8 - 2));
 	j = &(champ->params->p1);

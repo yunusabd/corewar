@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 15:41:43 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 16:11:48 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 18:20:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		op_sub(t_vm *vm, t_champ *champ)
 {
 	t_params	*p;
 
-	get_params(vm, champ);
 	resolve_params(vm, champ, champ->params, 3);
 	p = champ->params;
 	champ->reg[check_reg(champ->params->p3)] = champ->params->p1

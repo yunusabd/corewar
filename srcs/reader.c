@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/07 15:54:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 20:29:21 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		reader(t_vm *vm, int no, char *path)
 	champ = create_champ(vm);
 	champ->filename = path;
 	champ->number = no;
-	champ->reg[0] = no;
+	champ->reg[0] = 0;
 	while ((read_num = read(fd, buffer, READ_BUFF_SIZE)) > 0)
 	{
 		if (total_read > CHAMP_MAX_SIZE + PROG_NAME_LENGTH + COMMENT_LENGTH)

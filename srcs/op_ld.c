@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 23:51:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/09 15:46:05 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 18:20:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	op_ld(t_vm *vm, t_champ *champ)
 {
 	t_params	*p;
 
-	get_params(vm, champ);
 	p = champ->params;
 	champ->reg[check_reg(champ->params->p2)] = champ->params->p1;
 	champ->carry = 1;
