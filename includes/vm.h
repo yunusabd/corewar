@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/11 19:43:48 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/11 21:56:17 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void				move_pc(int *pc, int n);
 
 void				get_params(t_vm *vm, t_champ *champ);
 int					check_reg(int reg);
+void					put_reg(t_vm *vm, t_champ *champ, int reg_no, int value);
 int					add_two_octets(t_vm *vm, int pc);
 int					add_next_octets(t_vm *vm, int *pc, int no);
 t_params			*init_params(t_vm *vm);
