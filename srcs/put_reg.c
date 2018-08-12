@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 21:25:46 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 13:27:32 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/12 20:24:22 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static void		chk_reg(t_vm *vm, t_champ *champ, int reg)
 		return ;
 }
 
-void		put_reg(t_vm *vm, t_champ *champ, int reg_no, int value)
+void		put_reg(t_vm *vm, t_champ *champ, int reg_no, intmax_t value)
 {
 	intmax_t		s;
 
-	chk_reg(vm, champ, reg_no);
+	chk_reg(vm, champ, reg_no - 1);
 	s = ft_power(2, REG_SIZE * 8) - 1;
-	s = s >> (sizeof(s) * 8);
-	printf("result: %x\n", value & s);
-	champ->reg[reg_no] = value & s;
+	champ->reg[reg_no - 1] = value & s;
 }
