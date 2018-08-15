@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_fork.c                                          :+:      :+:    :+:   */
+/*   op_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 02:30:16 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/15 02:24:01 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/15 02:24:14 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	ment in run_champs.
 */
 
-void		op_fork(t_vm *vm, t_champ *champ)
+void		op_lfork(t_vm *vm, t_champ *champ)
 {
 	t_champ	*new;
 
@@ -28,10 +28,9 @@ void		op_fork(t_vm *vm, t_champ *champ)
 	ft_memcpy((void*)new->data, (void*)champ->data, champ->size);
 	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
-	new->number = champ->number;
 	new->pc = champ->pc;
 	get_direct(vm, champ, &(champ->params->p1));
-	move_pc(&(new->pc), (champ->params->p1 - 1) % IDX_MOD);
+	move_pc(&(new->pc), (champ->params->p1 - 1));
 	add_champ(vm, new);
 	new->opcode = 0;
 	printf("NEW PC: %d\n", new->pc);

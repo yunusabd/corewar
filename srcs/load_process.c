@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:33:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 19:41:39 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/14 21:24:38 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		load_processes(t_vm *vm)
 		tmp->start = i;
 		while (k < tmp->size)
 		{
-			vm->memory[i] = (unsigned char)tmp->data[k];
+			vm->memory[i] = tmp->data[k];
 			i++;
 			k++;
 		}

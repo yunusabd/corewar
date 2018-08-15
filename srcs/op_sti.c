@@ -6,20 +6,11 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 21:21:30 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 03:54:37 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-static int		resolve_number(int nb)
-{
-	printf("NB: %d\n", nb);
-//	nb = (~(nb) & 0xFFFF);
-	nb = (signed short)nb;
-	printf("NB: %d\n", nb);
-	return (nb);
-}
 
 /*
 **	Take a registry, and two indexes (potentially registries) add the two
@@ -33,23 +24,22 @@ void			op_sti(t_vm *vm, t_champ *champ)
 	int		res;
 	int		tmp;
 
-	tmp = champ->pc_tmp;
-	resolve_params(vm, champ, champ->params, 7);
-	champ->params->p2 += champ->params->p3;
-	champ->pc_tmp = champ->pc;
-	res = resolve_number(champ->params->p2 + champ->params->p3);
-	move_pc(&(champ->pc_tmp), res + REG_SIZE - 1);
-	printf("p1: %d\n", champ->params->p1);
-	printf("res: %d\n", res);
+	resolve_params(vm, champ, champ->params, 1 + 2 + 4);
+	res = (champ->params->p2 + champ->params->p3 + REG_SIZE);
+	tmp = champ->pc;
+	move_pc(&tmp, res % IDX_MOD);
 	i = 0;
 	while (i < REG_SIZE)
 	{
-		move_pc(&(champ->pc_tmp), -1);
-		vm->memory[champ->pc_tmp] = (champ->params->p1 >> (8 * i)) & 255;
-		printf("\n%d\n", vm->memory[champ->pc_tmp] = (champ->params->p1 >> (8 * i)) & 255);
+		move_pc(&tmp, -1);
+		vm->memory[tmp] = (champ->params->p1 >> (8 * i)) & 0xFF;
 		i++;
 	}
-	if (champ->params->p2 + champ->params->p3 == 0xFFD3)
+	/*
+	if (champ->encoding_byte == 88)
+	{
+		printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
 		exit(1);
-	champ->pc_tmp = tmp;
+	}
+*/
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/09 15:37:47 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 02:09:02 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		dump_vm(t_vm *vm)
 		printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
 		while (i < REG_NUMBER)
 		{
-			printf("|%d|", champ->reg[i]);
+			printf("|%ld|", champ->reg[i]);
 			i++;
 		}
 		champ = champ->next;
@@ -55,7 +55,7 @@ void		dump_memory(t_vm *vm)
 	i = 0;
 	print_logo();
 	dump_vm(vm);
-	while(i < MEM_SIZE)
+	while(i <= MEM_SIZE)
 	{
 		if (i % 8 == 0)
 			printf("  ");
@@ -68,7 +68,7 @@ void		dump_memory(t_vm *vm)
 				printf("%s%s", BYEL, BLK);
 			tmp = tmp->next;
 		}
-		printf("%.2x", vm->memory[i++]);
+		printf("%.2x", (unsigned char)vm->memory[i++]);
 		printf("%s%s", BRESET, RESET);
 		printf(" ");
 	}

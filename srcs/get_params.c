@@ -6,14 +6,15 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:42 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/11 20:04:26 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 05:06:40 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			get_reg(t_vm *vm, t_champ *champ, int *j)
+void			get_reg(t_vm *vm, t_champ *champ, intmax_t *j)
 {
+	printf("get reg\n");
 	*j = vm->memory[champ->pc_tmp];
 	move_pc(&(champ->pc_tmp), 1);
 }
@@ -23,16 +24,18 @@ void			get_reg(t_vm *vm, t_champ *champ, int *j)
 **	accordingly.
 */
 
-void			get_direct(t_vm *vm, t_champ *champ, int *j)
+void			get_direct(t_vm *vm, t_champ *champ, intmax_t *j)
 {
+	printf("get direct\n");
 	if ((g_op_tab[champ->opcode - 1].half_size) == 1)
 		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE / 2);
 	else
 		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE);
 }
 
-void			get_indirect(t_vm *vm, t_champ *champ, int *j)
+void			get_indirect(t_vm *vm, t_champ *champ, intmax_t *j)
 {
+	printf("get indirect\n");
 	*j = add_next_octets(vm, &(champ->pc_tmp), IND_SIZE);
 }
 
@@ -44,8 +47,8 @@ void			get_indirect(t_vm *vm, t_champ *champ, int *j)
 
 void			get_params(t_vm *vm, t_champ *champ)
 {
-	int		i;
-	int		*j;
+	int			i;
+	intmax_t	*j;
 
 	champ->params = init_params(vm);
 	move_pc(&(champ->pc_tmp), 1);

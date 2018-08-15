@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 13:38:35 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 03:10:31 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ void	get_opcode(t_vm *vm, t_champ *champ)
 	if (champ->opcode < 1 || champ->opcode > 16)
 		move_pc(&(champ->pc), 1);
 	champ->cycles = g_op_tab[champ->opcode - 1].cycles;
+//	Can cause segfault if OP does not exist.
+/*	
 	printf("\npc: %d\n", champ->pc);
 	printf("OP: %d\n", champ->opcode);
 	printf("operation: %s\n", g_op_tab[vm->memory[champ->pc] - 1].opname);
+*/
 }
 
 void	print_encoding(int n, int i)
@@ -41,9 +44,9 @@ void	run_champs(t_vm *vm)
 {
 	int		o;
 	t_champ	*tmp;
-	void	(*f[16])(t_vm *vm, t_champ *champ) = { 0, op_live, op_ld, op_st,
+	void	(*f[17])(t_vm *vm, t_champ *champ) = { 0, op_live, op_ld, op_st,
 		op_add, op_sub, op_and, op_or, op_xor, op_zjmp, op_ldi,
-		op_sti, op_fork, 0, 0, 0 };
+		op_sti, op_fork, op_lld, op_lldi, op_lfork, 0 };
 
 	tmp = vm->champs;
 	while (tmp)
@@ -52,7 +55,7 @@ void	run_champs(t_vm *vm)
 			tmp->cycles--;
 		else if (!(tmp->opcode))
 			get_opcode(vm, tmp);
-		if (tmp->opcode && !tmp->cycles)
+		if (tmp->opcode > 0 && !tmp->cycles)
 		{
 			o = tmp->opcode;
 			if (o == 2 || o == 3 || o == 4 || o == 5 || o == 6 || o == 7
@@ -75,7 +78,6 @@ void	run_champs(t_vm *vm)
 			{
 				move_pc(&(tmp->pc), 1);
 				op_zjmp(vm, tmp);
-				tmp->pc = tmp->pc_tmp;
 			}
 			else if (tmp->opcode == 12)
 			{

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   op_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 05:07:52 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/15 02:20:55 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/15 04:49:13 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		main(int ac, char **av)
-{
-	t_vm	*vm;
-	int		i;
+/*
+**	Write the value in the first arg to the register specified in the second arg.
+*/
 
-	vm = create_vm(ac, av);
-	while (ac-- > 1)
-		reader(vm, ac, av[ac]);
-	load_processes(vm);
-	printf(CLEAR);
-	i = 0;
-	while (vm->cycles++ < 14000)
-	{
-		run_champs(vm);
-		if (i < vm->cycles)
-			dump_handler(vm);
-	}
-	return (0);
+void	op_lld(t_vm *vm, t_champ *champ)
+{
+	resolve_indirect(vm, champ, 1);
+    put_reg(vm, champ, champ->params->p2, champ->params->p1);
+	if (champ->params->p1 == 0)
+		champ->carry = 1;
+	else
+		champ->carry = 0;
 }

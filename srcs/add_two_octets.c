@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:04:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 15:51:19 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 05:06:53 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int		add_two_octets(t_vm *vm, int pc)
 	return (res);
 }
 
-int		add_next_octets(t_vm *vm, int *pc, int n)
+intmax_t		add_next_octets(t_vm *vm, int *pc, int n)
 {
-	int	res;
-	int	i;
+	intmax_t	res;
+	int			i;
 
 	res = vm->memory[*pc];
 	n--;
 	i = 0;
 	while (i < n)
 	{
-		res = res << 8;
+		res <<= 8;
 		move_pc(pc, 1);
 		res |= vm->memory[*pc];
 		i++;

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 23:51:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 21:07:34 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 04:44:10 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@
 
 void	op_ld(t_vm *vm, t_champ *champ)
 {
-	t_params	*p;
-
-	p = champ->params;
-	resolve_params(vm, champ, champ->params, 1);
+	resolve_indirect(vm, champ, 1);
     put_reg(vm, champ, champ->params->p2, champ->params->p1);
 	if (champ->params->p1 == 0)
 		champ->carry = 1;
 	else
 		champ->carry = 0;
-	printf("p1: %d\n", champ->params->p1);
 }

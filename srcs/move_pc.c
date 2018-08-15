@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 01:07:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/06 19:14:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/14 21:29:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	move_pc(int *pc, int n)
 	if (*pc > 0)
 		*pc %= MEM_SIZE;
 	else if (*pc < 0)
-		*pc = ((MEM_SIZE - *pc) % MEM_SIZE);
+		*pc = ((*pc % MEM_SIZE) + MEM_SIZE);
 }

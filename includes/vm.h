@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 15:51:40 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 04:42:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ typedef	struct		s_params
 {
 	int			opcode;
 	int			encoding_byte;
-	int			p1;
-	int			p2;
-	int			p3;
+	intmax_t	p1;
+	intmax_t	p2;
+	intmax_t	p3;
 }					t_params;
 
 typedef struct		s_champ
@@ -91,7 +91,7 @@ typedef struct		s_vm
 	int			players;
 	char		**av;
 	t_champ		*champs;
-	int			memory[MEM_SIZE];
+	char		memory[MEM_SIZE];
 
 }					t_vm;
 
@@ -116,6 +116,7 @@ void				error_exit(t_vm *vm, char *msg);
 void				free_champ(t_champ *champ);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
 
+int					resolve_number(int nb);
 int					reader(t_vm *vm, int no, char *path);
 int					parse_bytes(t_vm *vm, t_champ *champ);
 void				get_name(t_vm *vm, t_champ *champ);
@@ -132,11 +133,12 @@ void				get_params(t_vm *vm, t_champ *champ);
 int					check_reg(int reg);
 void				put_reg(t_vm *vm, t_champ *champ, int reg_no, intmax_t value);
 int					add_two_octets(t_vm *vm, int pc);
-int					add_next_octets(t_vm *vm, int *pc, int no);
+intmax_t			add_next_octets(t_vm *vm, int *pc, int no);
 t_params			*init_params(t_vm *vm);
 void				resolve_params(t_vm *vm, t_champ *champ, t_params *param,
 		int n);
-void				get_direct(t_vm *vm, t_champ *champ, int *j);
+void				resolve_indirect(t_vm *vm, t_champ *champ, int n);
+void				get_direct(t_vm *vm, t_champ *champ, intmax_t *j);
 void				op_sti(t_vm *vm, t_champ *champ);
 void				op_ldi(t_vm *vm, t_champ *champ);
 void				op_st(t_vm *vm, t_champ *champ);
@@ -146,7 +148,10 @@ void				op_xor(t_vm *vm, t_champ *champ);
 void				op_live(t_vm *vm, t_champ *champ);
 void				op_zjmp(t_vm *vm, t_champ *champ);
 void				op_ld(t_vm *vm, t_champ *champ);
+void				op_lld(t_vm *vm, t_champ *champ);
+void				op_lldi(t_vm *vm, t_champ *champ);
 void				op_add(t_vm *vm, t_champ *champ);
 void				op_sub(t_vm *vm, t_champ *champ);
 void				op_fork(t_vm *vm, t_champ *champ);
+void				op_lfork(t_vm *vm, t_champ *champ);
 #endif
