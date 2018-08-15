@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 03:54:37 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 22:06:11 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,19 @@
 
 void			op_sti(t_vm *vm, t_champ *champ)
 {
-	int		i;
-	int		res;
-	int		tmp;
+	int			i;
+	intmax_t	res;
+	int			tmp;
 
 	resolve_params(vm, champ, champ->params, 1 + 2 + 4);
-	res = (champ->params->p2 + champ->params->p3 + REG_SIZE);
+	res = champ->params->p2 + champ->params->p3 + REG_SIZE;
 	tmp = champ->pc;
 	move_pc(&tmp, res % IDX_MOD);
 	i = 0;
 	while (i < REG_SIZE)
 	{
 		move_pc(&tmp, -1);
-		vm->memory[tmp] = (champ->params->p1 >> (8 * i)) & 0xFF;
+		vm->memory[tmp] = ((champ->params->p1 >> (8 * i)) & 0xFF);
 		i++;
 	}
-	/*
-	if (champ->encoding_byte == 88)
-	{
-		printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
-		exit(1);
-	}
-*/
 }

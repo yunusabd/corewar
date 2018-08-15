@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 02:30:16 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:45:58 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		op_fork(t_vm *vm, t_champ *champ)
 	new->number = champ->number;
 	new->pc = champ->pc;
 	get_direct(vm, champ, &(champ->params->p1));
-	move_pc(&(new->pc), (champ->params->p1 - 1) % IDX_MOD);
+	move_pc(&(new->pc), ((char)champ->params->p1 - 1) % IDX_MOD);
 	add_champ(vm, new);
 	new->opcode = 0;
 	printf("NEW PC: %d\n", new->pc);
