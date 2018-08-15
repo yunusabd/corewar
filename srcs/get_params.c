@@ -6,11 +6,15 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:42 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 05:06:40 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:06:49 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	Get a register value, stored in a single octet.
+*/
 
 void			get_reg(t_vm *vm, t_champ *champ, intmax_t *j)
 {
@@ -20,8 +24,8 @@ void			get_reg(t_vm *vm, t_champ *champ, intmax_t *j)
 }
 
 /*
-**	Check the op_tab if the direct parameter is 4 or 2 octets and read octets
-**	accordingly.
+**	Check the op_tab if the direct parameter is half or full size and
+**	read octets accordingly.
 */
 
 void			get_direct(t_vm *vm, t_champ *champ, intmax_t *j)
@@ -31,7 +35,12 @@ void			get_direct(t_vm *vm, t_champ *champ, intmax_t *j)
 		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE / 2);
 	else
 		*j = add_next_octets(vm, &(champ->pc_tmp), DIR_SIZE);
+	printf("j: %lld\n", *j);
 }
+
+/*
+**	Gets IND_SIZE octets from the speficied position.
+*/
 
 void			get_indirect(t_vm *vm, t_champ *champ, intmax_t *j)
 {
@@ -41,7 +50,7 @@ void			get_indirect(t_vm *vm, t_champ *champ, intmax_t *j)
 
 /*
 **	Read the parameters according to the encoding byte. If it is a register,
-**	read one octet, for direct or indirect read two octets.
+**	read one octet, for direct or indirect read two.
 **	For opcodes 9, 10, 11, 12, 14, 15 direct param is 2 octets, otherwise 4.
 */
 

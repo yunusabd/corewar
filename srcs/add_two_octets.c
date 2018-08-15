@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:04:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 05:06:53 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:17:55 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ intmax_t		add_next_octets(t_vm *vm, int *pc, int n)
 	intmax_t	res;
 	int			i;
 
-	res = vm->memory[*pc];
+	printf("first octet: %u\n", (unsigned char)vm->memory[5]);
+	res = (unsigned char)vm->memory[*pc];
 	n--;
 	i = 0;
 	while (i < n)
 	{
 		res <<= 8;
 		move_pc(pc, 1);
-		res |= vm->memory[*pc];
+		res |= (unsigned char)vm->memory[*pc];
 		i++;
 	}
 	move_pc(pc, 1);
