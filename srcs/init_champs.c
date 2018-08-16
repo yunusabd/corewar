@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 03:10:31 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/16 14:15:47 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	run_champs(t_vm *vm)
 			}
 			else if (tmp->opcode == 12)
 			{
-				move_pc(&(tmp->pc), 1);
 				op_fork(vm, tmp);
 				tmp->pc = tmp->pc_tmp;
 			}

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 22:06:23 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/16 14:16:05 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		dump_vm(t_vm *vm)
 	champ = vm->champs;
 	while (champ)
 	{
-		printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
+	//	printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
 		while (i < REG_NUMBER)
 		{
 			printf("|%jd|", champ->reg[i]);
