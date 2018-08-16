@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 17:16:58 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/16 19:14:14 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct		s_champ
 	int				pc_tmp;
 	int				size;
 	int				start;
+	int				live;
 	intmax_t		reg[REG_NUMBER];
 	t_params		*params;
 	char			*name;
@@ -89,6 +90,7 @@ typedef struct		s_vm
 {
 	int			ac;
 	int			cycles;
+	int			ctd;
 	int			players;
 	char		**av;
 	t_champ		*champs;
@@ -116,6 +118,8 @@ void				add_champ(t_vm *vm, t_champ *champ);
 void				error_exit(t_vm *vm, char *msg);
 void				free_champ(t_champ *champ);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
+
+void				cycle_check(t_vm *vm);
 
 int					resolve_number(int nb);
 int					reader(t_vm *vm, int no, char *path);
