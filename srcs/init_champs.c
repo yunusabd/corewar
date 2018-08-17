@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 22:59:15 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 16:31:48 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	run_champs(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
+		printf(".");
 		if ((tmp->opcode && tmp->cycles))
 			tmp->cycles--;
 		else if (!(tmp->opcode))

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/17 13:44:34 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:50:22 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct		s_vm
 	int			checks;
 	int			total_cycles;
 	int			players;
+	int			processes;
 	t_champ		*last_live;
 	char		**av;
 	t_champ		*champs;

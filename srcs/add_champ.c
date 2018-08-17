@@ -6,11 +6,15 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 16:47:04 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/17 13:35:20 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 16:45:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	TODO: FIX!!!!
+*/
 
 void	add_champ(t_vm *vm, t_champ *champ)
 {
