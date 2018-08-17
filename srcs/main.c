@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 19:15:16 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:39:36 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,18 @@ int		main(int ac, char **av)
 	load_processes(vm);
 	printf(CLEAR);
 	i = 0;
-	while (vm->cycles++ < 18000)
+	while (vm->cycles < 10 && vm->cycles_to_die > 0)
 	{
-		if ((vm->cycles % CYCLE_TO_DIE) == 0)
-			cycle_check(vm);
 		run_champs(vm);
-	 	if (i < vm->cycles && (vm->cycles % 1) == 0)
+	 	if (i <= vm->total_cycles)
 			dump_handler(vm);
+		if ((vm->cycles - vm->cycles_to_die) == 0)
+			cycle_check(vm);
+		vm->cycles++;
+		vm->total_cycles++;
+		printf("FIRST PLAYER: %d (%s)\n", vm->champs->number, vm->champs->name);
 	}
+	printf(SHOW_CURSOR);
+	judgement_day(vm);
 	return (0);
 }

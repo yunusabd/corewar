@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 14:16:05 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:39:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,28 @@ static void	print_logo()
 void		dump_vm(t_vm *vm)
 {
 	int		i;
+	int		players = 0;
 	t_champ	*champ;
 
-	i = 0;
 	champ = vm->champs;
-	while (champ)
+ 	while (champ)
 	{
-	//	printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
+	/*	
+	 	printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
+		i = 0;
 		while (i < REG_NUMBER)
 		{
 			printf("|%jd|", champ->reg[i]);
 			i++;
 		}
+	*/
+		players++;
 		champ = champ->next;
+	//	printf("\n");
 	}
 	printf("\nAC: %d\n", vm->ac);
-	printf("PLAYERS: %d\n", vm->players);
-	printf("CYCLES: %d\n", vm->cycles);
+	printf("PROCESSES: %d\n", players);
+	printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
 }
 
 void		dump_memory(t_vm *vm)
@@ -76,9 +81,9 @@ void		dump_memory(t_vm *vm)
 
 void		dump_handler(t_vm *vm)
 {
-//	if (!(vm->cycles % 20))
+	if (!(vm->cycles % 20))
 		printf(CLEAR);
 	printf(CUR_RESET);
 	dump_memory(vm);
-	usleep(100000);
+	usleep(10000);
 }

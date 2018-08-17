@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 19:14:14 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:44:34 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define CLEAR			"\x1b[H\x1b[2J"
 # define CUR_RESET		"\x1b[H\x1b[?25l"
-# define CUR			"\x1b[H\x1b[?25h"
-# define SHOW_CURSOR	"\x1b[?12;25h"
+# define HIDE_CURSOR	"\x1b[H\x1b[?25h"
+# define SHOW_CURSOR	"\e[?25h"
 
 #define BLK		"\x1B[30m"
 #define RED		"\x1B[31m"
@@ -75,7 +75,7 @@ typedef struct		s_champ
 	int				pc_tmp;
 	int				size;
 	int				start;
-	int				live;
+	int				live_calls;
 	intmax_t		reg[REG_NUMBER];
 	t_params		*params;
 	char			*name;
@@ -90,8 +90,11 @@ typedef struct		s_vm
 {
 	int			ac;
 	int			cycles;
-	int			ctd;
+	int			cycles_to_die;
+	int			checks;
+	int			total_cycles;
 	int			players;
+	t_champ		*last_live;
 	char		**av;
 	t_champ		*champs;
 	char		memory[MEM_SIZE];
@@ -120,7 +123,7 @@ void				free_champ(t_champ *champ);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
 
 void				cycle_check(t_vm *vm);
-
+void				judgement_day(t_vm *vm);
 int					resolve_number(int nb);
 int					reader(t_vm *vm, int no, char *path);
 int					parse_bytes(t_vm *vm, t_champ *champ);

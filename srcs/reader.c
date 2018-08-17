@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/12 20:44:10 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/17 09:55:10 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		reader(t_vm *vm, int no, char *path)
 	char	buffer[READ_BUFF_SIZE];
 	t_champ	*champ;
 
+	printf("PATH: %s\n", path);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		error_exit(vm, "Can't open file");
 	total_read = 0;
