@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 18:12:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 01:21:04 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 static void	decrease_cycles(t_vm *vm)
 {
 	vm->cycles_to_die -= CYCLE_DELTA;
-	vm->checks = -1;
-	printf("\nDECREASED CYCLE TO %d\n", vm->cycles_to_die);
+	vm->checks = 0;
 }
 
 void		check_live_calls(t_vm *vm)
 {
 	t_champ	*tmp;
-	intmax_t	*i;
 
 	tmp = vm->champs;
 	while (tmp)
@@ -33,10 +31,6 @@ void		check_live_calls(t_vm *vm)
 			printf("PROCESS OF PLAYER %d (%s) died\n", tmp->number, tmp->name);
 			(vm->processes_counter[tmp->number])--;
 			tmp->number *= -1;
-			i = vm->processes_counter;
-			printf("[%d] [%d] [%d] [%d]\n", i[1], i[2], i[3], i[4]);
-			printf("\ncycles: %d\n", vm->cycles);
-			tmp = vm->champs;
 		}
 		else if (tmp->live_calls > 0 && tmp->number > 0)
 			tmp->live_calls = 0;
@@ -53,10 +47,11 @@ static int	check_players(t_vm *vm)
 	counter = 0;
 	while (i < MAX_PLAYERS + 1)
 	{
-		if (vm->processes_counter > 0)
+		if (vm->processes_counter[i] > 0)
 			counter++;
 		i++;
 	}
+	return (counter);
 }
 
 void		cycle_check(t_vm *vm)
@@ -64,7 +59,6 @@ void		cycle_check(t_vm *vm)
 	t_champ	*tmp;
 	int		nbr;
 
-	printf("\ncylce_check, cycle number %d\n", vm->total_cycles);
 	nbr = 0;
 	tmp = vm->champs;
 	while (tmp)
@@ -76,8 +70,11 @@ void		cycle_check(t_vm *vm)
 	if (nbr == 1 || vm->checks == MAX_CHECKS)
 		decrease_cycles(vm);
 	check_live_calls(vm);
-	if (check_players(vm < 2))
+	if (check_players(vm) < 2 || )
+	{
 		printf("PLAYER %d %s won.\n", vm->last_live->number, vm->last_live->name);
+		exit(1);
+	}
 	vm->checks++;
 	vm->cycles = 0;
 }

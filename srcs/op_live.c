@@ -6,22 +6,30 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:55:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 17:52:12 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 01:01:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+/*
+**	Get the player number (direct parameter).
+**	Increase live calls for that player.
+**	Set pointer "last_live" in vm to the player.
+**	Increase live calls for process.
+*/
+
 void	op_live(t_vm *vm, t_champ *champ)
 {
 	t_champ	*find;
+
 	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
 	get_direct(vm, champ, &(champ->params->p1));
 	if ((find = find_champ(vm, champ->params->p1)))
 	{
 		vm->last_live = find;
-		find->live_calls++;
+		vm->lives_counter[find->number]++;
 		printf("\nA process shows that player %d (%s) is alive\n", find->number,
 				find->name);
 	}

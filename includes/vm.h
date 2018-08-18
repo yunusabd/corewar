@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/17 15:50:22 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 00:58:32 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct		s_vm
 	int			total_cycles;
 	int			players;
 	int			processes;
+	intmax_t	processes_counter[MAX_PLAYERS + 1];
+	intmax_t	lives_counter[MAX_PLAYERS + 1];
 	t_champ		*last_live;
 	char		**av;
 	t_champ		*champs;
@@ -119,6 +121,7 @@ extern t_op			g_op_tab[17];
 t_vm				*create_vm(int ac, char **av);
 t_champ				*create_champ(t_vm *vm);
 void				add_champ(t_vm *vm, t_champ *champ);
+void				add_process(t_vm *vm, t_champ *champ);
 void				error_exit(t_vm *vm, char *msg);
 void				free_champ(t_champ *champ);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
@@ -138,6 +141,7 @@ void				load_processes(t_vm *vm);
 void				run_champs(t_vm *vm);
 void				move_pc(int *pc, int n);
 
+t_champ				*find_champ(t_vm *vm, int nb);
 void				get_params(t_vm *vm, t_champ *champ);
 int					check_reg(int reg);
 void				put_reg(t_vm *vm, t_champ *champ, int reg_no, intmax_t value);

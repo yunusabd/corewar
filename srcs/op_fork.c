@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 17:39:07 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 00:15:36 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		op_fork(t_vm *vm, t_champ *champ)
 	move_pc(&(new->pc), ((char)champ->params->p1) % IDX_MOD);
 	add_process(vm, new);
 	vm->processes++;
-	vm->processes_counter[champ->number] += 20;
+	vm->processes_counter[champ->number] += 1;
 	new->opcode = 0;
 	printf("NEW PC: %d\n", new->pc);
 	printf("PLAYER %d FORKED\n", champ->number);

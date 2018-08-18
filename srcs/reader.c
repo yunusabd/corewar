@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 17:35:27 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 00:52:35 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_byte	*create_byte(t_vm *vm)
 
 	if (!(new = (t_byte*)malloc(sizeof(t_byte))))
 		error_exit(vm, "Malloc fail in read_bytes");
+	ft_bzero((void*)new, sizeof(t_byte));
 	return (new);
 }
 
@@ -71,7 +72,7 @@ int		reader(t_vm *vm, int no, char *path)
 	add_champ(vm, champ);
 	vm->players += 1;
 	vm->processes += 1;
-	vm->processes_counter[no] += 5;
+	vm->processes_counter[no] += 1;
 	parse_bytes(vm, champ);
 	return (0);
 }

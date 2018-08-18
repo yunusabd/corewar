@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 15:13:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 17:24:39 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/18 23:24:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	op_st(t_vm *vm, t_champ *champ)
 	    put_reg(vm, champ, champ->params->p2, champ->reg[check_reg(champ->params->p1)]);
 	else
 	{	
-		move_pc(&(tmp), (champ->params->p2 + REG_SIZE - 1) % IDX_MOD);
+		move_pc(&(tmp), (champ->params->p2 + REG_SIZE) % IDX_MOD);
 		i = 0;
 		while (i < REG_SIZE)
 		{

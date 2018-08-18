@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/17 16:31:48 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 00:00:11 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	get_opcode(t_vm *vm, t_champ *champ)
 {
-	champ->opcode = vm->memory[champ->pc];
-	if (champ->opcode < 1 || champ->opcode > 16)
+	int		tmp;
+
+	if (vm->memory[champ->pc] < 1 || champ->opcode > 16)
 		move_pc(&(champ->pc), 1);
-	champ->cycles = g_op_tab[champ->opcode - 1].cycles;
+	else
+	{
+		champ->opcode = vm->memory[champ->pc];
+		champ->cycles = g_op_tab[champ->opcode - 1].cycles;
+	}
 //	Can cause segfault if OP does not exist.
 /*	
 	printf("\npc: %d\n", champ->pc);
