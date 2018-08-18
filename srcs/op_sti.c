@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 23:20:41 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/18 14:44:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,5 @@ void			op_sti(t_vm *vm, t_champ *champ)
 		move_pc(&tmp, -1);
 		vm->memory[tmp] = ((champ->params->p1 >> (8 * i)) & 0xFF);
 		i++;
-	}
-	if (champ->opcode == 11 && vm->total_cycles > 5290)
-	{
-		printf("[%d] [%d] [%d]\n", champ->params->p1, champ->params->p2, champ->params->p3);
 	}
 }

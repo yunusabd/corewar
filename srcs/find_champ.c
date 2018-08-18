@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_live.c                                          :+:      :+:    :+:   */
+/*   find_champ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 15:55:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 17:52:12 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/18 14:52:01 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/18 14:54:40 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	op_live(t_vm *vm, t_champ *champ)
+t_champ		*find_champ(t_vm *vm, int nb)
 {
-	t_champ	*find;
-	champ->params = init_params(vm);
-	champ->pc_tmp = champ->pc;
-	get_direct(vm, champ, &(champ->params->p1));
-	if ((find = find_champ(vm, champ->params->p1)))
+	t_champ	*tmp;
+
+	tmp = vm->champs;
+	while (tmp)
 	{
-		vm->last_live = find;
-		find->live_calls++;
-		printf("\nA process shows that player %d (%s) is alive\n", find->number,
-				find->name);
+		if (nb == tmp->number)
+			return (tmp);
+		tmp = tmp->next;
 	}
-	champ->live_calls++;
-//	usleep(1000000);
+	return (NULL);
 }

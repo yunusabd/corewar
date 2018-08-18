@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/17 13:39:00 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/18 17:57:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		dump_vm(t_vm *vm)
 	//	printf("\n");
 	}
 	printf("\nAC: %d\n", vm->ac);
-	printf("PROCESSES: %d\n", players);
+	printf("PROCESSES: %d\n", vm->processes);
 	printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
 }
 
@@ -69,7 +69,7 @@ void		dump_memory(t_vm *vm)
 		tmp = vm->champs;
 		while (tmp)
 		{
-			if (tmp->pc == i)
+			if (tmp->pc == i && tmp->number > 0)
 				printf("%s%s", BYEL, BLK);
 			tmp = tmp->next;
 		}
