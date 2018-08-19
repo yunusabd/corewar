@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 /*
 **	Write the value in the first arg to the register specified in the second arg.
@@ -18,7 +19,8 @@
 
 void	op_ld(t_vm *vm, t_champ *champ)
 {
-	printf("%jd %jd %jd\n", champ->params->p1, champ->params->p2, champ->params->p3);
+	if (!(vm->flags & MATRIX))
+		printf("%jd %jd %jd\n", champ->params->p1, champ->params->p2, champ->params->p3);
 	resolve_indirect(vm, champ, 1);
     put_reg(vm, champ, champ->params->p2, champ->params->p1);
 	if (champ->params->p1 == 0)

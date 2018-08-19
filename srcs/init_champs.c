@@ -12,6 +12,7 @@
 
 #include "vm.h"
 
+
 void	get_opcode(t_vm *vm, t_champ *champ)
 {
 	int		tmp;

@@ -70,7 +70,8 @@ void		cycle_check(t_vm *vm)
 	if (nbr == 1 || vm->checks == MAX_CHECKS)
 		decrease_cycles(vm);
 	check_live_calls(vm);
-	if (check_players(vm) < 2 || )
+	// if (check_players(vm) < 2 || )
+	if (check_players(vm) < 2)
 	{
 		printf("PLAYER %d %s won.\n", vm->last_live->number, vm->last_live->name);
 		exit(1);

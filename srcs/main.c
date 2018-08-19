@@ -11,6 +11,11 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
+
+	// add to matrix
+	// optimize matrix build... and make a loadinf %
+	// norm and build in latest build
 
 int		main(int ac, char **av)
 {
@@ -18,15 +23,18 @@ int		main(int ac, char **av)
 	int		i;
 
 	vm = create_vm(ac, av);
-	while (ac-- > 1)
-		reader(vm, ac, av[ac]);
+	fl_get(ac, av, vm);
 	load_processes(vm);
 	printf(CLEAR);
-	i = 27000;
+	i = 0;
+	if ((vm->flags & VIS) || (vm->flags & DUMP))
+		i = vm->offset;
 	while (vm->processes > 0 && vm->cycles_to_die > 0)
 	{
 		run_champs(vm);
-	 	if (i <= vm->total_cycles)
+		fl_write_matrix(vm);
+	 	if ((i <= vm->total_cycles && (vm->flags & VIS)) ||
+		 (i == vm->total_cycles && (vm->flags & DUMP)))
 			dump_handler(vm);
 		if ((vm->cycles - vm->cycles_to_die) == 0)
 			cycle_check(vm);
@@ -35,5 +43,6 @@ int		main(int ac, char **av)
 	}
 	printf(SHOW_CURSOR);
 	judgement_day(vm);
+	fl_write_matrix(vm);
 	return (0);
 }

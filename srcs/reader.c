@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 t_byte	*create_byte(t_vm *vm)
 {
@@ -51,7 +52,9 @@ int		reader(t_vm *vm, int no, char *path)
 	char	buffer[READ_BUFF_SIZE];
 	t_champ	*champ;
 
-	printf("PATH: %s\n", path);
+	no = determine_no(vm, no);
+	if (!(vm->flags & MATRIX))
+		printf("PATH: %s\n", path);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		error_exit(vm, "Can't open file");
 	total_read = 0;

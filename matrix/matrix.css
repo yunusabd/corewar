@@ -1,0 +1,569 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+
+body {
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#wrapper {
+    width: 2120px;
+    height: 1350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 30px;
+    background-color: black;
+}
+
+#container {
+    width: 1660px;
+    height: 1350px;
+    background-color:black;
+    position: absolute;
+    left: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    padding: 10px;
+}
+
+#status_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 304px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    padding: 10px;
+}
+
+#players_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 262px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 379px;
+    padding: 10px;
+}
+
+#cycle_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 435px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 915px;
+    padding: 10px;
+}
+
+#cycle_box_title {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 27px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 915px;
+    padding: 10px;
+}
+
+
+.triangle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 180px;
+    text-align: center;
+    color: lightgreen;
+    width: 200px;
+    height: 200px;
+    display: block;
+    position: absolute;
+    left: 90px;
+    top: -65px;
+    transform: rotate(-45deg);
+}
+
+#tri2 {
+    top: 240px;
+    left: 127px;
+    transform: rotate(135deg);
+}
+
+#tri3 {
+    top: 69px;
+    left: 260px;
+    transform: rotate(45deg);
+}
+
+#tri4 {
+    top: 106px;
+    left: -43px;
+    transform: rotate(-135deg);
+}
+
+#outer_circle {
+    width: 160px;
+    height: 160px;
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 0px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 110px;
+    border-color: black;
+}
+
+#outer_circle2 {
+    width: 170px;
+    height: 170px;
+    display: block;
+    position: absolute;
+    left: 124px;
+    top: 104px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+}
+
+#inner_circle {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    width: 130px;
+    height: 130px;
+    display: block;
+    position: absolute;
+    left: 145px;
+    top: 125px;
+    border-radius: 50%;
+    background-color: black;
+    text-align: center;
+}
+
+#cycle_to_die {
+    width: 125px;
+}
+
+.line_draw {
+    position: absolute;
+    top: 130px;
+    display: block;
+    height: 1px;
+    width: 139px;
+    background-color: limegreen;
+}
+
+#line_draw2 {
+    top: 1165px;
+    right: 15px;
+}
+
+#cycle_info {
+    position: absolute;
+    top: 105px;
+    display: block;
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    height: 30px;
+    width: 139px;
+}
+
+#process_info {
+    text-align: right;
+    position: absolute;
+    left: 300px;
+    top: 225px;
+    display: block;
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    height: 30px;
+    width: 110px;
+}
+
+#inner_circle2 {
+    width: 118px;
+    height: 118px;
+    display: none;
+    position: absolute;
+    left: 5px;
+    top: -15px;
+    border-radius: 50%;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+}
+
+#operations_box_title {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 45px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 671px;
+    padding: 10px;
+}
+
+#operations_box {
+    font-size: 14px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 170px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 716px;
+    padding: 10px;
+}
+
+#data_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 370px;
+    height: 103px;
+    display: none;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 15px;
+    top: 320px;
+    padding: 10px;
+    padding-top: 7px;
+}
+
+#speed_data {
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    color: limegreen;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    right: 167px;
+    top: 1260px;
+    position: absolute;
+}
+
+#speed_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    color: limegreen;
+    width: 350px;
+    height: 350px;
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 1100px;
+    padding: 10px;
+    padding-top: 7px;
+    transform: rotateX(70deg);
+}
+
+.speed_bar {
+    width: 20px;
+    height: 50px;
+    display: block;
+    background-color: lightgreen;
+    position: absolute;
+    left: 170px;
+    top: 30px;
+    opacity: 0.5;
+}
+
+#speed1 {
+    opacity: 1;
+}
+
+#speed2 {
+    transform: rotate(45deg);
+    left: 260px;
+    top: 69px;
+}
+
+#speed3 {
+    transform: rotate(90deg);
+    left: 295px;
+    top: 155px;
+}
+
+#speed4 {
+    transform: rotate(-45deg);
+    left: 260px;
+    top: 240px;
+}
+
+#speed5 {
+    top: 279px;
+}
+
+#speed6 {
+    transform: rotate(45deg);
+    left: 79px;
+    top: 240px;
+}
+
+#speed7 {
+    transform: rotate(90deg);
+    left: 45px;
+    top: 155px;
+}
+
+#speed8 {
+    transform: rotate(-45deg);
+    left: 79px;
+    top: 69px;
+}
+
+#speedcircle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 103px;
+    top: 103px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: limegreen;
+}
+
+#speedcircle2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 45px;
+    top: 60px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 4px;
+    border-color: limegreen;
+    opacity: 0.5;
+}
+
+#ops_list_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 200px;
+    height: 144px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 20px;
+    top: 732px;
+    padding: 10px;
+    padding-top: 7px;
+}
+
+.line_div {
+    display: inline-block;
+}
+
+#players_box_title {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 400px;
+    height: 45px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    right: 5px;
+    top: 334px;
+    padding: 10px;
+}
+
+.player_box {
+    font-size: 21px;
+    font-family: 'VT323', monospace;
+    text-align: left;
+    color: limegreen;
+    width: 397px;
+    height: 60px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.player_profile {
+    padding-top: 3px;
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    text-align: center;
+    color: lightgreen;
+    width: 48px;
+    height: 45px;
+    display: block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.player_name {
+    position: absolute;
+    top: 7px;
+    left: 63px;
+    background-color: black;
+    width: 330px;
+    height: 30px;
+    font-family: 'VT323', monospace;
+    font-size: 21px;
+}
+
+.player_live {
+    position: absolute;
+    top: 33px;
+    left: 63px;
+    background-color: black;
+    color: yellowgreen;
+    width: 330px;
+    height: 23px;
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+}
+
+.cursor_block {
+    width: 14px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+    background-color: limegreen;
+}
+
+.linebox {
+    width: 397px;
+    height: 50px;
+    background-color:black;
+    display: block;
+    position: relative;
+}
+
+.ops_linebox {
+    width: 200px;
+    margin-bottom: 1px;
+    height: 49px;
+    background-color:black;
+    display: block;
+    position: relative;
+}
+
+.innerline{
+    height: 50px;
+    display: inline-block;
+    margin-right: 4px;
+    background-color: black;
+}
+
+.char {
+    background-color: black;
+    width: 20px;
+    height: 21px;
+    color: limegreen;
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+}
+
+#game_over {
+    display: none;
+    padding-top: 57px;
+    text-align: center;
+    font-size: 38px;
+    font-family: 'VT323', monospace;
+    color: limegreen;
+    width: 300px;
+    height: 98px;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: absolute;
+    left: 1000px;
+    top: 600px;
+}
+
+.op {
+    padding-top: 6px;
+    font-size: 16px;
+    font-family: 'VT323', monospace;
+    text-align: center;
+    color: yellowgreen;
+    width: 29px;
+    height: 29px;
+    display: inline-block;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: limegreen;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+}

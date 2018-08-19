@@ -20,7 +20,8 @@ SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			get_params.c op_live.c op_zjmp.c op_ld.c op_add.c op_fork.c \
 			op_st.c op_sub.c op_or.c op_xor.c put_reg.c op_ldi.c op_lld.c \
 			op_lldi.c op_lfork.c resolve_indirect.c cycle_check.c find_champ.c \
-			judgement_day.c
+			judgement_day.c \
+			flag_handler.c flag_handler2.c flag_handler3.c flag_handler4.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 
@@ -32,7 +33,7 @@ OBJS = $(addprefix $(OBJS_PATH),$(OBJS_NAME))
 
 INCLUDES_PATH = includes/
 
-INCLUDES_NAME = vm.h op.h
+INCLUDES_NAME = vm.h op.h flag_handler.h
 INCLUDES = $(addprefix $(INCLUDES_PATH),$(INCLUDE_NAME))
 
 LIBFT_PATH = libft

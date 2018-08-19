@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 /*
 **	Have to move back the pc of the new process by 1, to account for the move-
@@ -33,6 +34,9 @@ void		op_lfork(t_vm *vm, t_champ *champ)
 	move_pc(&(new->pc), (champ->params->p1 - 1));
 	add_champ(vm, new);
 	new->opcode = 0;
-	printf("NEW PC: %d\n", new->pc);
-	printf("PLAYER %d FORKED\n", champ->number);
+	if (!(vm->flags & MATRIX))
+	{
+		printf("NEW PC: %d\n", new->pc);
+		printf("PLAYER %d FORKED\n", champ->number);
+	}
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 void	get_size(t_vm *vm, t_champ *champ)
 {
@@ -31,5 +32,6 @@ void	get_size(t_vm *vm, t_champ *champ)
 		tmp = tmp->next;
 	}
 	champ->size = res;
-	printf("\n\nSIZE: %d\n", res);
+	if (!(vm->flags & MATRIX))
+		printf("\n\nSIZE: %d\n", res);
 }

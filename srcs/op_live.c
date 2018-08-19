@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 /*
 **	Get the player number (direct parameter).
@@ -30,7 +31,8 @@ void	op_live(t_vm *vm, t_champ *champ)
 	{
 		vm->last_live = find;
 		vm->lives_counter[find->number]++;
-		printf("\nA process shows that player %d (%s) is alive\n", find->number,
+		if (!(vm->flags & MATRIX))
+			printf("\nA process shows that player %d (%s) is alive\n", find->number,
 				find->name);
 	}
 	champ->live_calls++;

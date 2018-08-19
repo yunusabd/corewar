@@ -101,6 +101,8 @@ typedef struct		s_vm
 	char		**av;
 	t_champ		*champs;
 	char		memory[MEM_SIZE];
+	int			flags;
+	int			offset;
 
 }					t_vm;
 

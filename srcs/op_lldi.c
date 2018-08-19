@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 void	op_lldi(t_vm *vm, t_champ *champ)
 {
@@ -28,5 +29,6 @@ void	op_lldi(t_vm *vm, t_champ *champ)
 	else
 		champ->carry = 0;
 //	printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
-	printf("\nPUT %d in REG %d\n", reg, champ->params->p3);
+	if (!(vm->flags & MATRIX))
+		printf("\nPUT %d in REG %d\n", reg, champ->params->p3);
 }
