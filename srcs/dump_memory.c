@@ -6,14 +6,13 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 01:11:57 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:29:19 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-
-static void	print_logo()
+static void	print_logo(void)
 {
 	printf(MAG);
 	printf("		       __________  ____  _______       _____    ____ \n");
@@ -26,25 +25,15 @@ static void	print_logo()
 
 void		dump_vm(t_vm *vm)
 {
-	int		i;
-	int		players = 0;
+	int		players;
 	t_champ	*champ;
 
+	players = 0;
 	champ = vm->champs;
- 	while (champ)
+	while (champ)
 	{
-	/*	
-	 	printf("PLAYER%d SLEEP CYCLE: %d\n", champ->number, champ->cycles);
-		i = 0;
-		while (i < REG_NUMBER)
-		{
-			printf("|%jd|", champ->reg[i]);
-			i++;
-		}
-	*/
 		players++;
 		champ = champ->next;
-	//	printf("\n");
 	}
 	printf("\nAC: %d\n", vm->ac);
 	printf("PROCESSES: %d\n", vm->processes);
@@ -60,7 +49,7 @@ void		dump_memory(t_vm *vm)
 	i = 0;
 	print_logo();
 	dump_vm(vm);
-	while(i <= MEM_SIZE)
+	while (i <= MEM_SIZE)
 	{
 		if (i % 8 == 0)
 			printf("  ");

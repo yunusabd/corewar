@@ -5,35 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 02:24:01 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 02:24:14 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/19 20:03:59 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/19 20:34:54 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include "flag_handler.h"
 
+static t_champ	*copy_champ(t_vm *vm, t_champ *champ)
+{
+	t_champ	*new;
+
+	new = create_champ(vm);
+	ft_memcpy((void*)new, (void*)champ, sizeof(t_champ));
+	ft_memcpy((void*)new->reg, (void*)champ->reg, REG_NUMBER);
+	if (!(new->name = ft_strnew(ft_strlen(champ->name))))
+		error_exit(vm, "Malloc fail in copy_champ");
+	ft_strcpy(new->name, champ->name);
+	if (!(new->comment = ft_strnew(ft_strlen(champ->comment))))
+		error_exit(vm, "Malloc fail in copy_champ");
+	ft_strcpy(new->comment, champ->comment);
+	new->bytes = NULL;
+	new->data = NULL;
+	new->params = NULL;
+	new->opcode = 0;
+	return (new);
+}
+
 /*
 **	Have to move back the pc of the new process by 1, to account for the move-
 **	ment in run_champs.
 */
 
-void		op_lfork(t_vm *vm, t_champ *champ)
+void			op_lfork(t_vm *vm, t_champ *champ)
 {
 	t_champ	*new;
 
-	new = create_champ(vm);
-	memcpy((void*)new, (void*)champ, sizeof(t_champ));
-	if (!(new->data = ft_strnew(champ->size)))
-		error_exit(vm, "Error in op_fork");
-	ft_memcpy((void*)new->data, (void*)champ->data, champ->size);
+	new = copy_champ(vm, champ);
 	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
-	new->pc = champ->pc;
+	move_pc(&(champ->pc_tmp), 1);
 	get_direct(vm, champ, &(champ->params->p1));
-	move_pc(&(new->pc), (champ->params->p1 - 1));
-	add_champ(vm, new);
-	new->opcode = 0;
+	move_pc(&(new->pc), ((char)champ->params->p1));
+	add_process(vm, new);
+	vm->processes++;
+	vm->processes_counter[champ->number] += 1;
 	if (!(vm->flags & MATRIX))
 	{
 		printf("NEW PC: %d\n", new->pc);

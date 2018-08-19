@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 02:23:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 05:05:27 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:05:38 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	op_lldi(t_vm *vm, t_champ *champ)
 	int	reg;
 	int	tmp;
 
-	resolve_params(vm, champ, champ->params, 1 + 2);
+	resolve_params(champ, champ->params, 1 + 2);
 	resolve_indirect(vm, champ, 1);
 	tmp = champ->pc;
 	move_pc(&(tmp), (champ->params->p1 + champ->params->p2));
@@ -28,7 +28,6 @@ void	op_lldi(t_vm *vm, t_champ *champ)
 		champ->carry = 1;
 	else
 		champ->carry = 0;
-//	printf("p1: %d, p2: %d, p3: %d\n", champ->params->p1, champ->params->p2, champ->params->p3);
 	if (!(vm->flags & MATRIX))
-		printf("\nPUT %d in REG %d\n", reg, champ->params->p3);
+		printf("\nPUT %d in REG %jd\n", reg, champ->params->p3);
 }

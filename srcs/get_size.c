@@ -6,14 +6,14 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 00:00:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/10 16:31:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 16:55:23 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include "flag_handler.h"
 
-void	get_size(t_vm *vm, t_champ *champ)
+void	get_size(t_champ *champ)
 {
 	int		res;
 	int		i;
@@ -32,6 +32,4 @@ void	get_size(t_vm *vm, t_champ *champ)
 		tmp = tmp->next;
 	}
 	champ->size = res;
-	if (!(vm->flags & MATRIX))
-		printf("\n\nSIZE: %d\n", res);
 }

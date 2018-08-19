@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 01:21:04 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:31:46 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	decrease_cycles(t_vm *vm)
 	vm->checks = 0;
 }
 
-void		check_live_calls(t_vm *vm)
+static void	check_live_calls(t_vm *vm)
 {
 	t_champ	*tmp;
 
@@ -26,12 +26,7 @@ void		check_live_calls(t_vm *vm)
 	while (tmp)
 	{
 		if (tmp->live_calls == 0 && tmp->number > 0)
-		{
-			vm->processes--;
-			printf("PROCESS OF PLAYER %d (%s) died\n", tmp->number, tmp->name);
-			(vm->processes_counter[tmp->number])--;
-			tmp->number *= -1;
-		}
+			kill_process(vm, tmp);
 		else if (tmp->live_calls > 0 && tmp->number > 0)
 			tmp->live_calls = 0;
 		tmp = tmp->next;
@@ -70,11 +65,11 @@ void		cycle_check(t_vm *vm)
 	if (nbr == 1 || vm->checks == MAX_CHECKS)
 		decrease_cycles(vm);
 	check_live_calls(vm);
-	// if (check_players(vm) < 2 || )
 	if (check_players(vm) < 2)
 	{
-		printf("PLAYER %d %s won.\n", vm->last_live->number, vm->last_live->name);
-		exit(1);
+		printf("PLAYER %d (%s) won.\n", vm->last_live->number,
+				vm->last_live->name);
+		error_exit(vm, "OK");
 	}
 	vm->checks++;
 	vm->cycles = 0;

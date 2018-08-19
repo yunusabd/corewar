@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:04:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 17:38:54 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:32:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Takes an address in memory and adds the next octet(s) to it.
 */
 
-int		add_two_octets(t_vm *vm, int pc)
+int				add_two_octets(t_vm *vm, int pc)
 {
 	int	res;
 

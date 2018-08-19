@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:51:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/16 21:41:53 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 13:37:10 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	Set first bit of n for first param, second bit for second param etc.
 */
 
-void	resolve_params(t_vm *vm, t_champ *champ, t_params *param, int n)
+void	resolve_params(t_champ *champ, t_params *param, int n)
 {
 	if (n & 1 && (champ->encoding_byte & 192) == 64)
 		param->p1 = (int)champ->reg[check_reg(param->p1 - 1)];

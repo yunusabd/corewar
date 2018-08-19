@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:07:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/18 14:44:25 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 13:41:12 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			op_sti(t_vm *vm, t_champ *champ)
 	intmax_t	res;
 	int			tmp;
 
-	resolve_params(vm, champ, champ->params, 1 + 2 + 4);
+	resolve_params(champ, champ->params, 1 + 2 + 4);
 	res = champ->params->p2 + champ->params->p3 + REG_SIZE;
 	tmp = champ->pc;
 	move_pc(&tmp, res % IDX_MOD);

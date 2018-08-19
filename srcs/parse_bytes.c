@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 21:51:25 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/14 21:23:20 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 16:56:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				parse_bytes(t_vm *vm, t_champ *champ)
 {
 	if (!(champ->bytes))
 		error_exit(vm, "Empty champ");
-	get_size(vm, champ);
+	get_size(champ);
 	get_name(vm, champ);
 	get_comment(vm, champ);
 	get_data(vm, champ);

@@ -6,24 +6,16 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 21:25:46 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/15 04:27:03 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:19:30 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				resolve_number(int nb)
-{
-//	if (nb & (1 << (REG_SIZE * 8 - 1)))
-//		nb = -(~nb + 1);
-	return (nb & (ft_power(2, REG_SIZE * 8) - 1));
-}
-
 static void		chk_reg(t_vm *vm, t_champ *champ, int reg)
 {
-	if (reg < 1 || reg > REG_NUMBER)
-		reg += 0;
-		//TODO kill process
+	if (reg < 0 || reg > REG_NUMBER - 1)
+		kill_process(vm, champ);
 	else
 		return ;
 }

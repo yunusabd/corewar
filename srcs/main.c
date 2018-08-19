@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 00:35:47 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:26:28 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ int		main(int ac, char **av)
 	{
 		run_champs(vm);
 		fl_write_matrix(vm);
-	 	if ((i <= vm->total_cycles && (vm->flags & VIS)) ||
-		 (i == vm->total_cycles && (vm->flags & DUMP)))
+	 	if ((i <= vm->total_cycles && (vm->flags & VIS))
+				|| (i == vm->total_cycles && (vm->flags & DUMP)))
+		{
 			dump_handler(vm);
+			if (vm->flags & DUMP)
+				error_exit(vm, "OK");
+		}
 		if ((vm->cycles - vm->cycles_to_die) == 0)
 			cycle_check(vm);
 		vm->cycles++;

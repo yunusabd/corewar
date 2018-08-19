@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_champ.c                                       :+:      :+:    :+:   */
+/*   kill_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/26 14:27:19 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/07/28 17:16:11 by yabdulha         ###   ########.fr       */
+/*   Created: 2018/08/19 13:53:41 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/19 20:31:08 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	free_champ(t_champ *champ)
+void		kill_process(t_vm *vm, t_champ *champ)
 {
-	free(champ->filename);
-	free(champ->name);
-	//TODO Free bytes list
-	free(champ);
+	vm->processes--;
+	printf("PROCESS OF PLAYER %d (%s) died\n", champ->number, champ->name);
+	(vm->processes_counter[champ->number])--;
+	champ->number *= -1;
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:49:52 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/11 21:55:29 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:35:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	op_and(t_vm *vm, t_champ *champ)
 	t_params	*p;
 
 	p = champ->params;
-	resolve_params(vm, champ, champ->params, 3);
+	resolve_params(champ, champ->params, 3);
 	p = champ->params;
-    put_reg(vm, champ, p->p3, p->p1 & p->p2);
+	put_reg(vm, champ, p->p3, p->p1 & p->p2);
 	champ->carry = 1;
 }

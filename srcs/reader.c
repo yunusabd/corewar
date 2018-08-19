@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 00:52:35 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:18:39 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	read_bytes(t_vm *vm, t_champ *champ, char *buff, int len)
 	}
 }
 
-int		reader(t_vm *vm, int no, char *path)
+void	reader(t_vm *vm, int no, char *path)
 {
 	int		fd;
 	int		total_read;
@@ -53,13 +53,10 @@ int		reader(t_vm *vm, int no, char *path)
 	t_champ	*champ;
 
 	no = determine_no(vm, no);
-	if (!(vm->flags & MATRIX))
-		printf("PATH: %s\n", path);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		error_exit(vm, "Can't open file");
 	total_read = 0;
 	champ = create_champ(vm);
-	champ->filename = path;
 	champ->number = no;
 	champ->reg[0] = no;
 	while ((read_num = read(fd, buffer, READ_BUFF_SIZE)) > 0)
@@ -77,5 +74,4 @@ int		reader(t_vm *vm, int no, char *path)
 	vm->processes += 1;
 	vm->processes_counter[no] += 1;
 	parse_bytes(vm, champ);
-	return (0);
 }
