@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:02:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:59:00 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,4 @@ void			op_fork(t_vm *vm, t_champ *champ)
 	add_process(vm, new);
 	vm->processes++;
 	vm->processes_counter[champ->number] += 1;
-	if (!(vm->flags & MATRIX))
-	{
-		printf("NEW PC: %d\n", new->pc);
-		printf("PLAYER %d FORKED\n", champ->number);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 17:07:54 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:40:04 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,14 @@
 	// optimize matrix build... and make a loadinf %
 	// norm and build in latest build
 
-int		main(int ac, char **av)
+static void	run_vm(t_vm *vm)
 {
-	t_vm	*vm;
-	int		i;
+	int	i;
 
-	vm = create_vm(ac, av);
-	fl_get(ac, av, vm);
-	load_processes(vm);
-	t_champ	*tmp = vm->champs;
-	while (tmp)
-	{
-		printf("Champ %d: %s\n", tmp->number, tmp->name);
-		tmp = tmp->next;
-	}
-	exit(1);
-	printf(CLEAR);
 	i = 0;
 	if ((vm->flags & VIS) || (vm->flags & DUMP))
 		i = vm->offset;
-	while (vm->processes > 0 && vm->cycles_to_die > 0)
+	while (vm->cycles < 5001 && vm->processes > 0 && vm->cycles_to_die > 0)
 	{
 		run_champs(vm);
 		fl_write_matrix(vm);
@@ -52,9 +40,26 @@ int		main(int ac, char **av)
 		vm->cycles++;
 		vm->total_cycles++;
 	}
-	printf(SHOW_CURSOR);
+}
+
+int			main(int ac, char **av)
+{
+	t_vm	*vm;
+
+	vm = create_vm(ac, av);
+	fl_get(ac, av, vm);
+	load_processes(vm);
+	printf(CLEAR);
+	t_champ	*tmp = vm->champs;
+	while (tmp)
+	{
+		tmp->reg[0] < 0 ? tmp->reg[0] *= -1 : 0;
+		tmp = tmp->next;
+	}
+	run_vm(vm);
 	judgement_day(vm);
 	fl_write_matrix(vm);
+	printf(SHOW_CURSOR);
 	error_exit(vm, "OK");
 	return (0);
 }

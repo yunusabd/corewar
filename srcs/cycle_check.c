@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:41:58 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:31:04 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	decrease_cycles(t_vm *vm)
 {
 	vm->cycles_to_die -= CYCLE_DELTA;
-	vm->checks = 0;
+	vm->checks = -1;
 }
 
 static void	check_live_calls(t_vm *vm)
@@ -58,14 +58,13 @@ void		cycle_check(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
-		if (tmp->live_calls >= NBR_LIVE)
-			nbr = 1;
+		nbr += tmp->live_calls;
 		tmp = tmp->next;
 	}
-	if (nbr == 1 || vm->checks == MAX_CHECKS)
+	if (nbr >= NBR_LIVE || vm->checks == MAX_CHECKS)
 		decrease_cycles(vm);
 	check_live_calls(vm);
-	if (check_players(vm) < 2)
+	if (check_players(vm) == 0 || (check_players(vm) < 2 && vm->players > 1))
 	{
 		judgement_day(vm);
 		error_exit(vm, "OK");

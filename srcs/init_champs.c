@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:23:53 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:12:43 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ void	run_champs(t_vm *vm)
 	t_champ		*tmp;
 	static void	(*f[17])(t_vm *vm, t_champ *champ) = { 0, op_live, op_ld, op_st,
 		op_add, op_sub, op_and, op_or, op_xor, op_zjmp, op_ldi,
-		op_sti, op_fork, op_lld, op_lldi, op_lfork, 0 };
+		op_sti, op_fork, op_lld, op_lldi, op_lfork, op_aff };
 
 	tmp = vm->champs;
 	while (tmp)
 	{
 		if ((tmp->opcode && tmp->cycles))
 			tmp->cycles--;
-		else if (!(tmp->opcode))
+		else if (tmp->number > 0 && !(tmp->opcode))
 			get_opcode(vm, tmp);
-		if (tmp->opcode > 0 && !tmp->cycles)
+		if (tmp->opcode > 0 && !tmp->cycles && tmp->number > 0)
 		{
 			o = tmp->opcode;
 			if (o == 2 || o == 3 || o == 4 || o == 5 || o == 6 || o == 7
-					|| o == 8 || o == 10 || o == 11)
+					|| o == 8 || o == 10 || o == 11 || o == 16)
 			{
 				tmp->pc_tmp = tmp->pc;
 				move_pc(&(tmp->pc_tmp), 1);
@@ -81,6 +81,11 @@ void	run_champs(t_vm *vm)
 			else if (tmp->opcode == 12)
 			{
 				op_fork(vm, tmp);
+				tmp->pc = tmp->pc_tmp;
+			}
+			else if (tmp->opcode == 15)
+			{
+				op_lfork(vm, tmp);
 				tmp->pc = tmp->pc_tmp;
 			}
 			if (tmp->opcode)

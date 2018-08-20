@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 22:45:07 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:00:53 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define CLEAR			"\x1b[H\x1b[2J"
 # define CUR_RESET		"\x1b[H\x1b[?25l"
 # define HIDE_CURSOR	"\x1b[H\x1b[?25h"
-# define SHOW_CURSOR	"\e[?25h"
+# define SHOW_CURSOR	"\e[?25l"
 
 #define BLK		"\x1B[30m"
 #define RED		"\x1B[31m"
@@ -128,6 +128,8 @@ void				kill_process(t_vm *vm, t_champ *champ);
 void				error_exit(t_vm *vm, char *msg);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
 
+//	TODO: REMOVE
+void				print_champs(t_vm *vm);		
 void				cycle_check(t_vm *vm);
 void				order_champs(t_vm *vm);
 void				judgement_day(t_vm *vm);
@@ -171,4 +173,5 @@ void				op_add(t_vm *vm, t_champ *champ);
 void				op_sub(t_vm *vm, t_champ *champ);
 void				op_fork(t_vm *vm, t_champ *champ);
 void				op_lfork(t_vm *vm, t_champ *champ);
+void				op_aff(t_vm *vm, t_champ *champ);
 #endif

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:29:19 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 01:27:51 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,28 @@ static void	print_logo(void)
 void		dump_vm(t_vm *vm)
 {
 	int		players;
+	int		lives;
 	t_champ	*champ;
 
 	players = 0;
+	lives = 0;
 	champ = vm->champs;
 	while (champ)
 	{
+	/*	int i = 0;
+		while (i < REG_NUMBER)
+		{
+			printf("|%jd|", champ->reg[i]);
+			i++;
+		}
+		printf("\n");
+		*/
 		players++;
+		lives += champ->live_calls;
 		champ = champ->next;
 	}
 	printf("\nAC: %d\n", vm->ac);
-	printf("PROCESSES: %d\n", vm->processes);
+	printf("PROCESSES: %d, TOTAL LIVE CALLS: %d\n", vm->processes, lives);
 	printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
 }
 

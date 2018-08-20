@@ -6,14 +6,14 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 19:17:57 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 00:10:39 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include "flag_handler.h"
 
-t_byte	*create_byte(t_vm *vm)
+t_byte		*create_byte(t_vm *vm)
 {
 	t_byte	*new;
 
@@ -23,7 +23,7 @@ t_byte	*create_byte(t_vm *vm)
 	return (new);
 }
 
-void	read_bytes(t_vm *vm, t_champ *champ, char *buff, int len)
+void		read_bytes(t_vm *vm, t_champ *champ, char *buff, int len)
 {
 	t_byte	*new;
 	t_byte	*tmp;
@@ -44,21 +44,13 @@ void	read_bytes(t_vm *vm, t_champ *champ, char *buff, int len)
 	}
 }
 
-void	reader(t_vm *vm, int no, char *path)
+static void	read_champ(t_vm *vm, t_champ *champ, int fd)
 {
-	int		fd;
 	int		total_read;
 	int		read_num;
 	char	buffer[READ_BUFF_SIZE];
-	t_champ	*champ;
 
-	no = determine_no(vm, no);
-	if ((fd = open(path, O_RDONLY)) < 0)
-		error_exit(vm, "Can't open file");
 	total_read = 0;
-	champ = create_champ(vm);
-	champ->number = no;
-	champ->reg[0] = no;
 	while ((read_num = read(fd, buffer, READ_BUFF_SIZE)) > 0)
 	{
 		total_read += read_num;
@@ -71,9 +63,23 @@ void	reader(t_vm *vm, int no, char *path)
 	}
 	if (total_read < 4)
 		error_exit(vm, "File too small");
+}
+
+void		reader(t_vm *vm, int no, char *path)
+{
+	int		fd;
+	t_champ	*champ;
+
+	no = determine_no(vm, no);
+	if ((fd = open(path, O_RDONLY)) < 0)
+		error_exit(vm, "Can't open file");
+	champ = create_champ(vm);
+	champ->number = no;
+	champ->reg[0] = no;
+	read_champ(vm, champ, fd);
 	parse_bytes(vm, champ);
 	add_champ(vm, champ);
-	vm->players += 1;
-	vm->processes += 1;
-	vm->processes_counter[no] += 1;
+	vm->players++;
+	vm->processes++;
+	vm->processes_counter[no]++;
 }
