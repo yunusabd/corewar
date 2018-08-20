@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:26:28 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/20 17:07:54 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int		main(int ac, char **av)
 	vm = create_vm(ac, av);
 	fl_get(ac, av, vm);
 	load_processes(vm);
+	t_champ	*tmp = vm->champs;
+	while (tmp)
+	{
+		printf("Champ %d: %s\n", tmp->number, tmp->name);
+		tmp = tmp->next;
+	}
+	exit(1);
 	printf(CLEAR);
 	i = 0;
 	if ((vm->flags & VIS) || (vm->flags & DUMP))
@@ -48,5 +55,6 @@ int		main(int ac, char **av)
 	printf(SHOW_CURSOR);
 	judgement_day(vm);
 	fl_write_matrix(vm);
+	error_exit(vm, "OK");
 	return (0);
 }

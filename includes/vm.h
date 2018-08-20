@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:33:55 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/20 22:45:07 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct		s_vm
 	int			total_cycles;
 	int			players;
 	int			processes;
-	intmax_t	processes_counter[MAX_PLAYERS + 1];
-	intmax_t	lives_counter[MAX_PLAYERS + 1];
+	int			processes_counter[MAX_PLAYERS + 1];
+	int			lives_counter[MAX_PLAYERS + 1];
 	t_champ		*last_live;
 	char		**av;
 	t_champ		*champs;
@@ -129,6 +129,7 @@ void				error_exit(t_vm *vm, char *msg);
 void				check_magic_number(t_vm *vm, t_champ *champ, char *buff);
 
 void				cycle_check(t_vm *vm);
+void				order_champs(t_vm *vm);
 void				judgement_day(t_vm *vm);
 int					resolve_number(int nb);
 void				reader(t_vm *vm, int no, char *path);

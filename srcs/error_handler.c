@@ -6,21 +6,21 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 14:06:23 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 19:53:15 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/20 16:27:09 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	free_bytes(t_vm *vm)
+static void	free_bytes(t_champ *champ)
 {
 	t_byte	*tmp;
 
-	while (vm->champs->bytes)
+	while (champ->bytes)
 	{
-		tmp = vm->champs->bytes->next;
-		free(vm->champs->bytes);
-		vm->champs->bytes = tmp;
+		tmp = champ->bytes->next;
+		free(champ->bytes);
+		champ->bytes = tmp;
 	}
 }
 
@@ -40,17 +40,16 @@ void		error_exit(t_vm *vm, char *msg)
 {
 	t_champ *tmp;
 
-	while (vm->champs)
+	tmp = vm->champs;
+	while (tmp)
 	{
-		tmp = vm->champs->next;
-		free(vm->champs->name);
-		free(vm->champs->params);
-		free(vm->champs->data);
-		free(vm->champs->comment);
-		free_bytes(vm);
-		ft_bzero(vm->champs, sizeof(t_champ));
-		vm->champs->next = tmp;
-		vm->champs = tmp;
+		free(tmp->name);
+		free(tmp->params);
+		free(tmp->data);
+		free(tmp->comment);
+		free_bytes(tmp);
+//		ft_bzero(tmp, sizeof(t_champ));
+		tmp = tmp->next;
 	}
 	free_champs(vm);
 	free(vm);

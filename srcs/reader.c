@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:18:39 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/20 19:17:57 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,19 @@ void	reader(t_vm *vm, int no, char *path)
 	champ->reg[0] = no;
 	while ((read_num = read(fd, buffer, READ_BUFF_SIZE)) > 0)
 	{
+		total_read += read_num;
 		if (total_read > CHAMP_MAX_SIZE + PROG_NAME_LENGTH + COMMENT_LENGTH)
 			error_exit(vm, "File too large");
-		total_read += read_num;
+		if (champ->magic == 0 && total_read > 3)
+			check_magic_number(vm, champ, buffer);
 		read_bytes(vm, champ, buffer, read_num);
 		ft_bzero(buffer, READ_BUFF_SIZE);
 	}
 	if (total_read < 4)
 		error_exit(vm, "File too small");
+	parse_bytes(vm, champ);
 	add_champ(vm, champ);
 	vm->players += 1;
 	vm->processes += 1;
 	vm->processes_counter[no] += 1;
-	parse_bytes(vm, champ);
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:31:46 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:41:58 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void		cycle_check(t_vm *vm)
 	check_live_calls(vm);
 	if (check_players(vm) < 2)
 	{
-		printf("PLAYER %d (%s) won.\n", vm->last_live->number,
-				vm->last_live->name);
+		judgement_day(vm);
 		error_exit(vm, "OK");
 	}
 	vm->checks++;

@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 16:30:08 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/18 16:30:09 by jszabo           ###   ########.fr       */
+/*   Updated: 2018/08/20 17:48:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void		fl_get(int ac, char **av, t_vm *vm)
 			break ;
 	}
 	fl_normalize_champ_nr(vm);
+	order_champs(vm);
 }
