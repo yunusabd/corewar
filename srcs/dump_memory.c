@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 13:48:46 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 21:18:26 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	print_logo(void)
 
 void		dump_vm(t_vm *vm)
 {
-	int		players;
-	int		lives;
+	int				players;
+	intmax_t		lives;
 	t_champ	*champ;
 
 	players = 0;
@@ -34,16 +34,15 @@ void		dump_vm(t_vm *vm)
 	champ = vm->champs;
 	while (champ)
 	{
-	/*	int i = 0;
+		int i = 0;
 		while (i < REG_NUMBER)
 		{
 			ft_printf("|%jd|", champ->reg[i]);
 			i++;
 		}
 		ft_printf("\n");
-		*/
 		players++;
-		lives += champ->live_calls;
+			lives += champ->live_calls;
 		champ = champ->next;
 	}
 	ft_printf("\nAC: %d\n", vm->ac);
@@ -85,5 +84,5 @@ void		dump_handler(t_vm *vm)
 		ft_printf(CLEAR);
 	ft_printf(CUR_RESET);
 	dump_memory(vm);
-	usleep(10000);
+	usleep(100000);
 }

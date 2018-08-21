@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:55:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 00:51:15 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:55:41 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ void	op_live(t_vm *vm, t_champ *champ)
 	{
 		vm->last_live = find;
 		vm->lives_counter[find->number]++;
-		if (!(vm->flags & MATRIX))
-			printf("A process shows that player %d (%s) is alive\n",
-					find->number, find->name);
 	}
-	champ->live_calls++;
+	(champ->live_calls)++;
 }

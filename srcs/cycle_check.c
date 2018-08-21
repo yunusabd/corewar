@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 01:31:04 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:14:26 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static int	check_players(t_vm *vm)
 
 void		cycle_check(t_vm *vm)
 {
-	t_champ	*tmp;
-	int		nbr;
+	t_champ			*tmp;
+	intmax_t		nbr;
 
 	nbr = 0;
 	tmp = vm->champs;

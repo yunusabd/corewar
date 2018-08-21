@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 13:16:17 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:13:32 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct		s_champ
 	int				pc_tmp;
 	int				size;
 	int				start;
-	int				live_calls;
+	intmax_t		live_calls;
 	intmax_t		reg[REG_NUMBER];
 	t_params		*params;
 	char			*name;

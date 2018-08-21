@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:33:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 23:44:59 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:37:42 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		load_processes(t_vm *vm)
 	while (tmp)
 	{
 		/* TEMPORARILY FIXING PLAYER NUMBERS */
-		tmp->reg[0] = tmp->number;
+		tmp->reg[0] = tmp->number < 0 ? -(tmp->number) : tmp->number;
+		tmp->number = tmp->number < 0 ? -(tmp->number) : tmp->number;
 		i = (MEM_SIZE / (vm->players)) * j;
 		tmp->pc = i;
 		k = 0;
