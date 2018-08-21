@@ -6,7 +6,7 @@
 #    By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:52 by yabdulha          #+#    #+#              #
-#    Updated: 2018/08/21 01:00:35 by yabdulha         ###   ########.fr        #
+#    Updated: 2018/08/21 14:38:47 by yabdulha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = corewar
 SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			check_magic_number.c reader.c parse_bytes.c order_champs.c \
 			get_name.c get_comment.c get_size.c dump_memory.c \
-			load_process.c init_champs.c op.c op_sti.c move_pc.c init_params.c \
+			load_process.c run_champs.c op.c op_sti.c move_pc.c init_params.c \
 			check_reg.c op_and.c add_two_octets.c resolve_params.c \
 			get_params.c op_live.c op_zjmp.c op_ld.c op_add.c op_fork.c \
 			op_st.c op_sub.c op_or.c op_xor.c put_reg.c op_ldi.c op_lld.c \
