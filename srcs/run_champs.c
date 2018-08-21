@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 23:16:09 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 14:37:24 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 15:14:59 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void		run_champs(t_vm *vm)
 		if (tmp->opcode > 0 && !tmp->cycles && tmp->number > 0)
 		{
 			o = tmp->opcode;
-			if (o == 2 || o == 3 || o == 4 || o == 5 || o == 6 || o == 7
-					|| o == 8 || o == 10 || o == 11 || o == 16)
+			if ((o > 1 && o < 9) || (o > 12 && o < 15) || o == 10 || o == 11
+					|| o == 16)
 				run_normal(vm, tmp);
 			else
 				run_other(vm, tmp);
