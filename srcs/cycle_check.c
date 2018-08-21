@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:12:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 19:14:26 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 22:17:09 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	check_live_calls(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
-		if (tmp->live_calls == 0 && tmp->number > 0)
+		if (tmp->live_calls == 0 && !tmp->dead)
 			kill_process(vm, tmp);
-		else if (tmp->live_calls > 0 && tmp->number > 0)
+		else if (tmp->live_calls > 0 && !tmp->dead)
 			tmp->live_calls = 0;
 		tmp = tmp->next;
 	}

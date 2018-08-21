@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 21:18:26 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 22:20:30 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void		dump_vm(t_vm *vm)
 	champ = vm->champs;
 	while (champ)
 	{
-		int i = 0;
+	/*	int i = 0;
 		while (i < REG_NUMBER)
 		{
 			ft_printf("|%jd|", champ->reg[i]);
 			i++;
 		}
 		ft_printf("\n");
+		*/
 		players++;
 			lives += champ->live_calls;
 		champ = champ->next;
@@ -68,7 +69,7 @@ void		dump_memory(t_vm *vm)
 		tmp = vm->champs;
 		while (tmp)
 		{
-			if (tmp->pc == i && tmp->number > 0)
+			if (tmp->pc == i && !tmp->dead)
 				ft_printf("%s%s", BYEL, BLK);
 			tmp = tmp->next;
 		}

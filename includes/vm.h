@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 20:13:32 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 22:14:14 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct		s_champ
 	short int		magic;
 	int				carry;
 	int				cycles;
+	int				dead;
 	int				encoding_byte;
 	int				number;
 	int				opcode;
