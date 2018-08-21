@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_champs.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/21 18:17:18 by yabdulha          #+#    #+#             */
+/*   Updated: 2018/08/21 18:17:21 by yabdulha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void	get_opcode(t_vm *vm, t_champ *champ)
 {
-	if (vm->memory[champ->pc] < 1 || champ->opcode > 16)
+	if (vm->memory[champ->pc] < 1 || vm->memory[champ->pc] > 16)
+	{
+		champ->opcode = 0;
 		move_pc(&(champ->pc), 1);
+	}
 	else
 	{
 		champ->opcode = vm->memory[champ->pc];
