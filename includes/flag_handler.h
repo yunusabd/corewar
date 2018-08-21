@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 17:41:27 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/18 17:41:28 by jszabo           ###   ########.fr       */
+/*   Updated: 2018/08/21 12:27:35 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # define USE "Usage: ./corewar [-dump/-v cycle_nbr] [[-n nbr] x.cor] [-m]"
 # define DUMP (1 << 3)
+# define DEBUG (1 << 4)
 # define VIS (1 << 21)
 # define MATRIX (1 << 12)
 

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 14:06:23 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 00:41:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 12:25:02 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ void		error_exit(t_vm *vm, char *msg)
 		free(tmp->data);
 		free(tmp->comment);
 		free_bytes(tmp);
-//		ft_bzero(tmp, sizeof(t_champ));
 		tmp = tmp->next;
 	}
 	free_champs(vm);
-	printf("CYCLES: %d\n",vm->total_cycles);
 	free(vm);
 	printf(SHOW_CURSOR);
 	if (ft_strcmp(msg, "OK") == 0)

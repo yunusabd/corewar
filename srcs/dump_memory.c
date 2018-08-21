@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 01:27:51 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:48:46 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	print_logo(void)
 {
-	printf(MAG);
-	printf("		       __________  ____  _______       _____    ____ \n");
-	printf("		     / ____/ __ \\/ __ \\/ ____| |     / /   |  / __ \\\n");
-	printf("		   / /   / / / / /_/ / __/  | | /| / / /| | / /_/ /\n");
-	printf("		  / /___/ /_/ / _, _/ /___  | |/ |/ / ___ |/ _, _/ \n");
-	printf("		  \\____/\\____/_/ |_/_____/  |__/|__/_/  |_/_/ |_|  \n\n");
-	printf(RESET);
+	ft_printf(MAG);
+	ft_printf("		       __________  ____  _______       _____    ____ \n");
+	ft_printf("		     / ____/ __ \\/ __ \\/ ____| |     / /   |  / __ \\\n");
+	ft_printf("		   / /   / / / / /_/ / __/  | | /| / / /| | / /_/ /\n");
+	ft_printf("		  / /___/ /_/ / _, _/ /___  | |/ |/ / ___ |/ _, _/ \n");
+	ft_printf("		  \\____/\\____/_/ |_/_____/  |__/|__/_/  |_/_/ |_|  \n\n");
+	ft_printf(RESET);
 }
 
 void		dump_vm(t_vm *vm)
@@ -37,18 +37,18 @@ void		dump_vm(t_vm *vm)
 	/*	int i = 0;
 		while (i < REG_NUMBER)
 		{
-			printf("|%jd|", champ->reg[i]);
+			ft_printf("|%jd|", champ->reg[i]);
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		*/
 		players++;
 		lives += champ->live_calls;
 		champ = champ->next;
 	}
-	printf("\nAC: %d\n", vm->ac);
-	printf("PROCESSES: %d, TOTAL LIVE CALLS: %d\n", vm->processes, lives);
-	printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
+	ft_printf("\nAC: %d\n", vm->ac);
+	ft_printf("PROCESSES: %d, TOTAL LIVE CALLS: %d\n", vm->processes, lives);
+	ft_printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
 }
 
 void		dump_memory(t_vm *vm)
@@ -63,27 +63,27 @@ void		dump_memory(t_vm *vm)
 	while (i <= MEM_SIZE)
 	{
 		if (i % 8 == 0)
-			printf("  ");
+			ft_printf("  ");
 		if (i % 64 == 0)
-			printf("\n");
+			ft_printf("\n");
 		tmp = vm->champs;
 		while (tmp)
 		{
 			if (tmp->pc == i && tmp->number > 0)
-				printf("%s%s", BYEL, BLK);
+				ft_printf("%s%s", BYEL, BLK);
 			tmp = tmp->next;
 		}
-		printf("%.2x", (unsigned char)vm->memory[i++]);
-		printf("%s%s", BRESET, RESET);
-		printf(" ");
+		ft_printf("%.2x", (unsigned char)vm->memory[i++]);
+		ft_printf("%s%s", BRESET, RESET);
+		ft_printf(" ");
 	}
 }
 
 void		dump_handler(t_vm *vm)
 {
 	if (!(vm->cycles % 20))
-		printf(CLEAR);
-	printf(CUR_RESET);
+		ft_printf(CLEAR);
+	ft_printf(CUR_RESET);
 	dump_memory(vm);
 	usleep(10000);
 }
