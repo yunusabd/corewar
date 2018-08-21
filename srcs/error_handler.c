@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 14:06:23 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 12:25:02 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 23:47:41 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void		error_exit(t_vm *vm, char *msg)
 	}
 	free_champs(vm);
 	free(vm);
-	printf(SHOW_CURSOR);
+	ft_printf(SHOW_CURSOR);
 	if (ft_strcmp(msg, "OK") == 0)
 		exit(0);
-	printf("%s\n", msg);
+	ft_printf("%s\n", msg);
 	exit(1);
 }

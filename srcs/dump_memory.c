@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:21:35 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 22:20:30 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 00:06:42 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		dump_vm(t_vm *vm)
 {
 	int				players;
 	intmax_t		lives;
-	t_champ	*champ;
+	t_champ			*champ;
 
 	players = 0;
 	lives = 0;
@@ -43,10 +43,9 @@ void		dump_vm(t_vm *vm)
 		ft_printf("\n");
 		*/
 		players++;
-			lives += champ->live_calls;
+		lives += champ->live_calls;
 		champ = champ->next;
 	}
-	ft_printf("\nAC: %d\n", vm->ac);
 	ft_printf("PROCESSES: %d, TOTAL LIVE CALLS: %d\n", vm->processes, lives);
 	ft_printf("CYCLES: %d, CTD: %d\n ", vm->total_cycles, vm->cycles_to_die);
 }
@@ -60,7 +59,7 @@ void		dump_memory(t_vm *vm)
 	i = 0;
 	print_logo();
 	dump_vm(vm);
-	while (i <= MEM_SIZE)
+	while (i < MEM_SIZE)
 	{
 		if (i % 8 == 0)
 			ft_printf("  ");
@@ -77,6 +76,7 @@ void		dump_memory(t_vm *vm)
 		ft_printf("%s%s", BRESET, RESET);
 		ft_printf(" ");
 	}
+	ft_printf("\n");
 }
 
 void		dump_handler(t_vm *vm)

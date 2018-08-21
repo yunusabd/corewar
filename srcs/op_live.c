@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:55:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 22:23:06 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 23:46:01 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	op_live(t_vm *vm, t_champ *champ)
 	{
 		vm->last_live = find;
 		vm->lives_counter[find->number]++;
-		ft_printf("“%d Cycle: %d, A process shows that player %d (%s) is alive\n",\
-				vm->cycles_to_die, vm->total_cycles, find->number, find->name);
+		ft_printf("A process shows that player %d (%s) is alive\n",\
+				find->number, find->name);
 	}
 	(champ->live_calls)++;
 }

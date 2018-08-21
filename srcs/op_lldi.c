@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 02:23:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 20:05:38 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 23:42:21 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,4 @@ void	op_lldi(t_vm *vm, t_champ *champ)
 		champ->carry = 1;
 	else
 		champ->carry = 0;
-	if (!(vm->flags & MATRIX))
-		printf("\nPUT %d in REG %jd\n", reg, champ->params->p3);
 }

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 00:53:44 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 01:11:59 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 23:33:40 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	op_aff(t_vm *vm, t_champ *champ)
 	resolve_params(champ, champ->params, 1);
 	champ->params->p1 %= 256;
 	vm += 0;
-	printf("aff: %c\n", (char)champ->params->p1);
+	ft_printf("aff: %c\n", (char)champ->params->p1);
 }

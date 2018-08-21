@@ -6,7 +6,7 @@
 #    By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/19 13:45:52 by yabdulha          #+#    #+#              #
-#    Updated: 2018/08/21 19:11:23 by yabdulha         ###   ########.fr        #
+#    Updated: 2018/08/22 00:00:57 by yabdulha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 
-FLAGS = -Werror -Wextra -Wall -g
+FLAGS = -Werror -Wextra -Wall
 
 OBJS_PATH = objects/
 OBJS_NAME = $(SRC_FILES:.c=.o)

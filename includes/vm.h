@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 22:14:14 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 23:47:33 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define CLEAR			"\x1b[H\x1b[2J"
 # define CUR_RESET		"\x1b[H\x1b[?25l"
 # define HIDE_CURSOR	"\x1b[H\x1b[?25h"
-# define SHOW_CURSOR	"\e[?25l"
+# define SHOW_CURSOR	"\x1b[?12;25h"
 
 #define BLK		"\x1B[30m"
 #define RED		"\x1B[31m"
