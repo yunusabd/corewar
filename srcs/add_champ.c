@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 16:47:04 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 23:58:29 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 17:45:31 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 void	add_champ(t_vm *vm, t_champ *champ)
 {
-	t_champ	*tmp;
-
 	if ((vm->champs))
-	{
-		tmp = vm->champs;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = champ;
-	}
-	else
-		vm->champs = champ;
+		champ->next = vm->champs;
+	vm->champs = champ;
 }
 
 void	add_process(t_vm *vm, t_champ *champ)

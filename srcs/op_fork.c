@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 01:59:00 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/21 17:47:35 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static t_champ	*copy_champ(t_vm *vm, t_champ *champ)
 	new->data = NULL;
 	new->params = NULL;
 	new->opcode = 0;
+	new->next = NULL;
 	return (new);
 }
 
