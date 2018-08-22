@@ -6,14 +6,14 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 00:00:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 20:27:05 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 20:29:11 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include "flag_handler.h"
 
-void	get_size(t_champ *champ)
+void	get_size(t_vm *vm, t_champ *champ)
 {
 	int		res;
 	int		i;

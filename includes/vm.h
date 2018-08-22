@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:30 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 12:30:14 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 20:29:31 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void				reader(t_vm *vm, int no, char *path);
 int					parse_bytes(t_vm *vm, t_champ *champ);
 t_byte				*create_byte(t_vm *vm);
 void				get_name(t_vm *vm, t_champ *champ);
-void				get_size(t_champ *champ);
+void				get_size(t_vm *vm, t_champ *champ);
 void				get_comment(t_vm *vm, t_champ *champ);
 
 void				dump_memory(t_vm *vm);
