@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 16:30:08 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/22 00:44:18 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 18:58:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ static int	fl_dump(char **av, t_vm *vm, int *i, int ac)
 
 static int	fl_valid_input(char **av, t_vm *vm, int *i)
 {
-	if (strcmp(av[*i], "-dump") &&
-		strcmp(av[*i], "-n") &&
-		strcmp(av[*i], "-v") &&
-		strcmp(av[*i], "-m") &&
+	if (ft_strcmp(av[*i], "-dump") &&
+		ft_strcmp(av[*i], "-n") &&
+		ft_strcmp(av[*i], "-v") &&
+		ft_strcmp(av[*i], "-m") &&
 		ft_strcmp(av[*i] + ft_strlen(av[*i]) - 4, ".cor"))
 		error_exit(vm, USE);
 	return (1);

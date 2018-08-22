@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 17:28:25 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 19:14:37 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int			main(int ac, char **av)
 	load_processes(vm);
 	run_vm(vm);
 	judgement_day(vm);
-	if (!(vm->flags & MATRIX))
-		ft_printf("cycles: %d\n", vm->total_cycles);
 	fl_write_matrix(vm);
 	error_exit(vm, "OK");
 	return (0);

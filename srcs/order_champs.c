@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 17:49:05 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/20 22:44:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 18:55:13 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			print_champs(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
-		printf("Champ %d: %s\n", tmp->number, tmp->name);
+		ft_printf("Champ %d: %s\n", tmp->number, tmp->name);
 		tmp = tmp->next;
 	}
 }

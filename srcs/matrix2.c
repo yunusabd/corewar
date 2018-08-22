@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 16:30:08 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/18 16:30:09 by jszabo           ###   ########.fr       */
+/*   Updated: 2018/08/22 18:56:48 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void		fl_matrix_end(t_vm *vm, int fd, int **memory2)
 	if (((vm->cycles - vm->cycles_to_die) == 0 && check_players2(vm) < 2)
 	|| (vm->processes <= 0 || vm->cycles_to_die <= 0))
 	{
-		printf(SHOW_CURSOR);
+		ft_printf(SHOW_CURSOR);
 		write(fd, "];\n", 3);
 		write(fd, "winner = \"", 10);
 		if (vm->last_live && !(winner = ft_strdup(vm->last_live->name)))
 			error_exit(vm, "malloc failure in fl_matrix_end");
 		if (!(vm->last_live) && !(winner = ft_strdup("Nobody")))
 			error_exit(vm, "malloc failure in fl_matrix_end");
-		write(fd, winner, strlen(winner));
+		write(fd, winner, ft_strlen(winner));
 		free(winner);
 		write(fd, "\";\n", 3);
 		close(fd);
