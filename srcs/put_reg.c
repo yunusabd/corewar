@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 21:25:46 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 20:52:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 01:54:49 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static int		chk_reg(t_vm *vm, t_champ *champ, int reg)
 {
-	if (reg < 0 || reg > REG_NUMBER - 1)
+	if (reg < 0 || reg > REG_NUMBER)
+	{
+		printf("put %jd in reg %jd\n", champ->params->p1, champ->params->p2);
 		kill_process(vm, champ);
+		printf("wrong reg: %d\n", champ->opcode);
+		exit(1);
+	}
 	else
 		return (1);
 	return (0);

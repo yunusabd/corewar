@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 20:31:55 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/21 00:10:39 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 00:49:05 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,4 @@ void		reader(t_vm *vm, int no, char *path)
 	read_champ(vm, champ, fd);
 	parse_bytes(vm, champ);
 	add_champ(vm, champ);
-	vm->players++;
-	vm->processes++;
-	vm->processes_counter[no]++;
 }
