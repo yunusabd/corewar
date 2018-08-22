@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 00:00:33 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 16:55:23 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 20:27:05 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ void	get_size(t_champ *champ)
 		res |= (unsigned char)tmp->byte;
 		tmp = tmp->next;
 	}
+	if (res > CHAMP_MAX_SIZE || res < 0)
+		error_exit(vm, "Invalid champion size");
 	champ->size = res;
 }
