@@ -89,7 +89,7 @@ long		fl_atoi_l(const char *str)
 	return ((long)result);
 }
 
-int		fl_isnumber(char *s)
+int			fl_isnumber(char *s)
 {
 	int	i;
 

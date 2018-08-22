@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 static void	decrease_cycles(t_vm *vm)
 {
@@ -64,7 +65,8 @@ void		cycle_check(t_vm *vm)
 	if (nbr >= NBR_LIVE || vm->checks == MAX_CHECKS)
 		decrease_cycles(vm);
 	check_live_calls(vm);
-	if (check_players(vm) == 0 || (check_players(vm) < 2 && vm->players > 1))
+	if (!(vm->flags & MATRIX)
+	&& (check_players(vm) == 0 || (check_players(vm) < 2 && vm->players > 1)))
 	{
 		judgement_day(vm);
 		error_exit(vm, "OK");

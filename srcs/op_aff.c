@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "flag_handler.h"
 
 void	op_aff(t_vm *vm, t_champ *champ)
 {
 	resolve_params(champ, champ->params, 1);
 	champ->params->p1 %= 256;
 	vm += 0;
-	ft_printf("aff: %c\n", (char)champ->params->p1);
+	if (!(vm->flags & MATRIX))
+		ft_printf("aff: %c\n", (char)champ->params->p1);
 }

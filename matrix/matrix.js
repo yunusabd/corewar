@@ -51,6 +51,17 @@ var ops_line_nr = 3;
 var c;
 var speed = 1;
 var arraysize = memory.length;
+var memorynow = [];
+var memoryprev = [];
+var z = 0;
+var x = memory[0][2][0];
+var x2 = x;
+
+while (z < 4096)
+{
+    memoryprev[z] = memory[0][1][z];
+    z++;
+}
 
 function cursorFlash(lnr)
 {
@@ -229,27 +240,13 @@ function showGame()
     while (i < players)
     {
         document.getElementById("player_profile"+i).innerHTML = char_set[champs[i][1]];
-        document.getElementById("player_name"+i).innerHTML = champs[i][0];
+        document.getElementById("player_name"+i).innerHTML = champs[i][0].substring(0, 38);
         i++;
     }
-    i = 0;
+    i = 1;
     var a;
     
     restartGame();
-
-    function memoryDiff(i)
-    {
-        var l = 0;
-        if (!i)
-            return (0);
-        while (l < 4096)
-        {
-            if (memory[i - 1][1][l] != memory[i][1][l])
-                return (0);
-            l++;
-        }
-        return (1);
-    }
 
     function pauseGame()
     {
@@ -270,13 +267,13 @@ function showGame()
     function setMatrix()
     {
         var byte;
-        var l = 0;
+        var l = 1;
         var p = 0;
         var j = 0;
         var k = 1;
         var m = 0;
         var l2 = 0;
-        //
+        
         window.onkeydown = checkKey;
         function checkKey(e) {
             e = e || window.event;
@@ -293,7 +290,6 @@ function showGame()
                 document.getElementById("speed_data").innerHTML = (speed * 12.5)+"%";
             }
         }
-        //
         document.getElementById("cycle").innerHTML = i + 1;
         while (k < 17)
         {
@@ -316,30 +312,24 @@ function showGame()
                 $("#ops_line"+ops_line_nr).append(op_names[memory[i - 1][0][l]]);
                 ops_line_nr++;
             }
-            l++;
+            l = l + 3;
+        }
+        memorynow = memoryprev.slice(0);
+        l = 0;
+        while (i < arraysize && l < memory[i][1].length && memory[i][1].length != 0)
+        {
+            memorynow[memory[i][1][l]] = memory[i][1][l + 1];
+            l = l + 2;
         }
         l = 0;
-        l2 = 0;
-        while (l < 4096 && i < arraysize && !memoryDiff(i))
+        while ((speed == 1 || !(i % (speed * 3))) && l < 4096 && i < arraysize)
         {
-            byte = memory[i][1][l];
-            //
-            if (byte < 0)
-            {
-                byte = -byte;
-                while (byte)
-                {
-                    byte--;
-                    l2++;
-                }
-                byte = memory[i][1][l];
-            }
-            //
+            byte = memorynow[l];
             if (byte >= 1000)
             {
                 $("#char"+l).css("background-color", "lightgreen");
+                p = p + ((byte - (byte % 1000)) / 1000);
                 byte = byte % 1000;
-                p++;
             }
             else
             {
@@ -347,7 +337,7 @@ function showGame()
                 $("#char"+l).css("color", "limegreen");
                 $("#char"+l).css("font-weight", "normal");
             }
-            if (i == 0 || memory[i - 1][1][l] != byte)
+            if (i == 1 || memoryprev[l] != byte)
             {
                 document.getElementById("char"+l).innerHTML = char_set[byte];
                 $("#char"+l).css("color", "greenyellow");
@@ -356,33 +346,64 @@ function showGame()
             document.getElementById("processes").innerHTML = p;
             l++;
         }
-        if (i + speed >= arraysize)
-            i++;
-        else
-            i = i + speed;
-        if (i <= 0)
-            i = 0;
-        if (i >= arraysize)
+        memoryprev = memorynow.slice(0);
+        function updateCTD()
+        {
+            if (x2 && x2 < x * 0.75)
+                $("#tri1").css("opacity", "0.5");
+            if (x2 && x2 < x * 0.50)
+                $("#tri3").css("opacity", "0.5");
+            if (x2 && x2 < x * 0.25)
+                $("#tri2").css("opacity", "0.5");
+            if (x2 == 1)
+                $("#tri4").css("opacity", "0.5");
+            if (x2 == 0)
+            {
+                $("#tri1").css("opacity", "1");
+                $("#tri2").css("opacity", "1");
+                $("#tri3").css("opacity", "1");
+                $("#tri4").css("opacity", "1");
+                x = memory[0][2][0];
+                x2 = x;
+            }
+            x2--;
+        }
+
+        updateCTD();
+
+        var p = 0;
+        var q = 2;
+        var r = 0;
+        while (p < players)
+        {
+            r = 0;
+            q = 2;
+            while (q < memory[i][0].length)
+            {
+                if (champs[p][1] == memory[i][0][q])
+                    r = r + memory[i][0][q - 2];
+                q = q + 3;
+            }
+            document.getElementById("player_live"+p).innerHTML = "";
+            r++;
+            if (r > 42)
+                r = 42;
+            while (r)
+            {
+                $("#player_live"+p).append("/");
+                r--;
+            }
+            p++;
+        }
+        i++;
+        if (i == arraysize - 1)
         {
             window.removeEventListener("keypress", pauseGame);
             clearInterval(a);
             $("#game_over").css("display", "block");
             writeLine("execution complete", 3);
             clearInterval(d);
+            writeLine(winner.substring(0, 27) + " won.", 4);
         }
     }
 }
-
-
-
-// - make the flags
-// - lives (21)?
-// - last live?
-// - cycles to die
-// - winner champ
-// - (cycle delta) 
-// - (max checks)
-// - (nbr live)
-// - show 0 changes
-// - optimalizalni -> ahol 0-ak vannak, oda -xet kell irni, ahol x jeloli h hany nulla volt. Ezt azutan egy function visszaalakitja ertelmes array-e, es addig loading bar-t mutat
-

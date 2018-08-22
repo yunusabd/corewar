@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 18:04:49 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/20 17:12:23 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/18 18:04:49 by jszabo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,84 +15,58 @@
 
 static void	fl_write_opcode(int fd, t_vm *vm)
 {
-	char	*num;
+	t_champ *champ;
 	t_champ *tmp;
 
-	tmp = vm->champs;
+	fl_make_champ(&champ, vm);
 	write(fd, " [[", 3);
-	while (tmp)
+	tmp = champ;
+	while (champ)
 	{
-		if (!(num = ft_itoa(tmp->opcode)))
-			error_exit(vm, "malloc failure in fl_write_opcode");
-		free(num);
-		write(fd, num, ft_strlen(num));
-		if (tmp->next)
+		fl_write_data_num(champ->carry, vm, fd);
+		write(fd, ", ", 2);
+		fl_write_data_num(champ->opcode, vm, fd);
+		write(fd, ", ", 2);
+		fl_write_data_num(champ->number, vm, fd);
+		if (champ->next)
 			write(fd, ", ", 2);
-		tmp = tmp->next;
+		champ = champ->next;
 	}
+	champ = tmp;
+	fl_free_champ(&champ);
 	write(fd, "], [", 4);
 }
 
-static void	fl_write_memory(int fd, t_vm *vm)
+static void	fl_write_memory(int fd, t_vm *vm, int *memory2, int i)
 {
-	int			i;
+	int			l;
 	int			val;
-	char		*num;
 	t_champ		*tmp;
-	static int	zero_ct = 0;
+	int			change;
 
-	i = 0;
-	fl_write_opcode(fd, vm);
-	while (i < MEM_SIZE)
+	change = 0;
+	l = 0;
+	while (l < MEM_SIZE)
 	{
-		tmp = vm->champs;
-		val = (unsigned char)(vm->memory)[i];
-		while (tmp)
+		fl_get_val(&tmp, vm, &val, l);
+		if (!i)
+			fl_write_first(val, vm, fd, l);
+		else if (memory2[l] != val)
 		{
-			val = (tmp->pc == i) ? val + 1000 : val;
-			tmp = tmp->next;
-		}
-		if (!val)
-		{
-			zero_ct++;
-			if (i == MEM_SIZE - 1)
-			{
-				if (!(num = ft_itoa(-zero_ct)))
-					error_exit(vm, "malloc failure in fl_write_memory");
-				write(fd, num, ft_strlen(num));
-				free(num);
-			}
-		}
-		else
-		{
-			if (zero_ct)
-			{
-				if (!(num = ft_itoa(-zero_ct)))
-					error_exit(vm, "malloc failure in fl_write_memory");
-				write(fd, num, ft_strlen(num));
-				free(num);
+			if (change)
 				write(fd, ", ", 2);
-			}
-			if (!(num = ft_itoa(val)))
-					error_exit(vm, "malloc failure in fl_write_memory");
-			write(fd, num, ft_strlen(num));
-			free(num);
-			zero_ct = 0;
+			fl_write_compr(l, vm, fd, val);
+			change = 1;
 		}
-		// if (!(num = ft_itoa(val)))
-		// 	error_exit(vm, "malloc failure in fl_write_memory");
-		// write(fd, num, ft_strlen(num));
-		// free(num);
-		if (i < MEM_SIZE - 1 && val)
-			write(fd, ", ", 2);
-		i++;
+		l++;
 	}
+	write(fd, "], [", 4);
+	fl_write_data_num(vm->cycles_to_die, vm, fd);
 	write(fd, "]]", 2);
 }
 
 static void	fl_write_champ(int fd, t_vm *vm)
 {
-	char	*num;
 	t_champ *tmp;
 
 	tmp = vm->champs;
@@ -102,10 +76,7 @@ static void	fl_write_champ(int fd, t_vm *vm)
 		write(fd, "[\"", 2);
 		write(fd, tmp->name, ft_strlen(tmp->name));
 		write(fd, "\", ", 3);
-		if (!(num = ft_itoa(tmp->number)))
-			error_exit(vm, "malloc failure in fl_write_champ");
-		write(fd, num, ft_strlen(num));
-		free(num);
+		fl_write_data_num(tmp->number, vm, fd);
 		write(fd, "]", 1);
 		if (tmp->next)
 			write(fd, ", ", 1);
@@ -119,27 +90,28 @@ void		fl_write_matrix(t_vm *vm)
 {
 	static int	fd = 0;
 	static int	i = 0;
+	static int	*memory2;
 
 	if (!(vm->flags & MATRIX))
 		return ;
 	if (!i)
 	{
-		ft_putstr("The Matrix is loading...");
 		fd = open("./matrix/memory.js", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR |
 		S_IWUSR | S_IRGRP | S_IROTH);
 		fl_write_champ(fd, vm);
 	}
-	fl_write_memory(fd, vm);
+	fl_write_opcode(fd, vm);
+	fl_write_memory(fd, vm, memory2, i);
 	if (vm->processes > 0 && vm->cycles_to_die > 0)
-		write(fd, ",", 1);
-	if (vm->processes <= 0 || vm->cycles_to_die <= 0)
 	{
-		write(fd, "];\n", 3);
-		close(fd);
-		system("open -a \"Google Chrome\" ./matrix/matrix.html");
+		ft_printf(HIDE_CURSOR);
+		if (!(i % 10))
+			ft_printf(GRN "  Uploading to the Matrix... %d cycles" RESET, i);
+		write(fd, ",", 1);
 	}
+	fl_matrix_end(vm, fd, &memory2);
+	fl_memcpy(vm, &memory2);
 	i++;
-	ft_putchar('.');
 }
 
 int			champs_num(t_champ *champ)
@@ -154,5 +126,5 @@ int			champs_num(t_champ *champ)
 		i++;
 		tmp = tmp->next;
 	}
-	return (i);
+	return (0);
 }

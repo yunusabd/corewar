@@ -21,7 +21,8 @@ SRC_FILES = main.c create_vm.c create_champ.c add_champ.c error_handler.c \
 			op_st.c op_sub.c op_or.c op_xor.c put_reg.c op_ldi.c op_lld.c \
 			op_lldi.c op_lfork.c resolve_indirect.c cycle_check.c find_champ.c \
 			judgement_day.c kill_process.c op_aff.c \
-			flag_handler.c flag_handler2.c flag_handler3.c flag_handler4.c
+			flag_handler.c flag_handler2.c flag_handler3.c flag_handler4.c \
+			matrix.c matrix2.c
 SRCS_PATH = srcs/
 SRCS = $(addprefix $(SRCS_PATH),$(SRC_FILES))
 

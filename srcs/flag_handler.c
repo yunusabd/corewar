@@ -59,7 +59,7 @@ static int	fl_m(char **av, t_vm *vm, int *i, int ac)
 static int	fl_dump(char **av, t_vm *vm, int *i, int ac)
 {
 	static int	dump_ct = 0;
-	
+
 	if (!ft_strcmp(av[*i], "-dump"))
 	{
 		if (vm->flags & VIS || dump_ct > 0)

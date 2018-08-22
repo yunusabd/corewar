@@ -31,7 +31,8 @@ void	op_live(t_vm *vm, t_champ *champ)
 	{
 		vm->last_live = find;
 		vm->lives_counter[find->number]++;
-		ft_printf("A process shows that player %d (%s) is alive\n",\
+		if (!(vm->flags & MATRIX))
+			ft_printf("A process shows that player %d (%s) is alive\n",\
 				find->number, find->name);
 	}
 	(champ->live_calls)++;

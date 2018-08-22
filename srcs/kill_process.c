@@ -16,6 +16,7 @@
 void		kill_process(t_vm *vm, t_champ *champ)
 {
 	vm->processes--;
+	if (!(vm->flags & MATRIX))
 		ft_printf("%d PROCESS OF PLAYER %d (%s) died\n",\
 				vm->total_cycles, champ->number, champ->name);
 	(vm->processes_counter[champ->number])--;

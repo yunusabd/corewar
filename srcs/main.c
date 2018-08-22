@@ -45,7 +45,8 @@ static void	init_vm(t_vm *vm)
 	tmp = vm->champs;
 	while (tmp)
 	{
-		printf("PLAYER %d: %s\n", tmp->number, tmp->name);
+		if (!(vm->flags & MATRIX))
+			ft_printf("PLAYER %d: %s\n", tmp->number, tmp->name);
 		vm->players++;
 		vm->processes++;
 		vm->processes_counter[tmp->number]++;
@@ -62,11 +63,13 @@ int			main(int ac, char **av)
 	vm = create_vm(ac, av);
 	fl_get(ac, av, vm);
 	init_vm(vm);
-	printf("PLAYERS %d, PROCESSES: %d\n", vm->players, vm->processes);
+	if (!(vm->flags & MATRIX))
+		ft_printf("PLAYERS %d, PROCESSES: %d\n", vm->players, vm->processes);
 	load_processes(vm);
 	run_vm(vm);
 	judgement_day(vm);
-	printf("cycles: %d\n", vm->total_cycles);
+	if (!(vm->flags & MATRIX))
+		ft_printf("cycles: %d\n", vm->total_cycles);
 	fl_write_matrix(vm);
 	error_exit(vm, "OK");
 	return (0);
