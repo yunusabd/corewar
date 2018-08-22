@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 13:34:20 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 17:42:10 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			op_fork(t_vm *vm, t_champ *champ)
 	champ->pc_tmp = champ->pc;
 	move_pc(&(champ->pc_tmp), 1);
 	get_direct(vm, champ, &(champ->params->p1));
-	move_pc(&(new->pc), ((char)champ->params->p1) % IDX_MOD);
+	move_pc(&(new->pc), (champ->params->p1) % IDX_MOD);
 	add_process(vm, new);
 	vm->processes += 1;
 	vm->processes_counter[champ->number] += 1;

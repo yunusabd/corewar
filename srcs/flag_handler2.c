@@ -6,7 +6,7 @@
 /*   By: jszabo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 16:30:08 by jszabo            #+#    #+#             */
-/*   Updated: 2018/08/22 00:34:52 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 17:26:24 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	fl_sort_champ_nr(t_champ *tmp, t_vm *vm)
 			next = next->next;
 			while (next && next->number <= 0)
 				next = next->next;
-			if (next && tmp->number > next->number)
+			if (next && tmp->number < next->number)
 			{
 				tmp_num = tmp->number;
 				tmp->number = next->number;

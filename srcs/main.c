@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:20:18 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 12:48:01 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 17:28:25 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int ac, char **av)
 
 	vm = create_vm(ac, av);
 	fl_get(ac, av, vm);
-	if (!(vm->flags & VIS))
+	if ((vm->flags & VIS))
 		ft_printf(CLEAR);
 	init_vm(vm);
 	load_processes(vm);
