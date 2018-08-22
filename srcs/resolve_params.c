@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:51:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 12:40:43 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 19:28:45 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,22 @@ int	resolve_params(t_champ *champ, t_params *param, int n)
 	if (n & 1 && (champ->encoding_byte & 192) == 64)
 	{
 		reg = check_reg(param->p1);
-		if (reg)
-			param->p1 = (int)champ->reg[reg - 1];
-		else
+		(reg) ? param->p1 = (int)champ->reg[reg - 1] : 0;
+		if (!reg)
 			return (0);
 	}
 	if (n & 2 && (champ->encoding_byte & 48) == 16)
 	{
 		reg = check_reg(param->p2);
-		if (reg)
-			param->p2 = (int)champ->reg[reg - 1];
-		else
+		(reg) ? param->p2 = (int)champ->reg[reg - 1] : 0;
+		if (!reg)
 			return (0);
 	}
 	if (n & 4 && (champ->encoding_byte & 12) == 4)
 	{
 		reg = check_reg(param->p3);
-		if (reg)
-			param->p3 = (int)champ->reg[reg - 1];
-		else
+		(reg) ? param->p3 = (int)champ->reg[reg - 1] : 0;
+		if (!reg)
 			return (0);
 	}
 	return (1);
