@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 15:13:54 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 01:33:49 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 14:10:34 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	op_st(t_vm *vm, t_champ *champ)
 	resolve_params(champ, champ->params, 1);
 	tmp = champ->pc;
 	if ((champ->encoding_byte & 48) == 16)
-	{
-		put_reg(vm, champ, champ->params->p2,
-				champ->reg[check_reg(champ->params->p1 - 1)]);
-	}
+		put_reg(vm, champ, champ->params->p2, champ->params->p1);
 	else
 	{
 		move_pc(&(tmp), (champ->params->p2 + REG_SIZE) % IDX_MOD);

@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 15:59:15 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 13:40:25 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 13:35:02 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,4 @@ void	op_ldi(t_vm *vm, t_champ *champ)
 	move_pc(&(tmp), (champ->params->p1 + champ->params->p2) % IDX_MOD);
 	reg = add_next_octets(vm, &(tmp), REG_SIZE);
 	put_reg(vm, champ, champ->params->p3, reg);
-	if (reg == 0)
-		champ->carry = 1;
-	else
-		champ->carry = 0;
 }

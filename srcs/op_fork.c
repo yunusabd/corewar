@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 18:41:34 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 01:20:04 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 13:34:20 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_champ	*copy_champ(t_vm *vm, t_champ *champ)
 	ft_strcpy(new->comment, champ->comment);
 	new->pc = champ->pc;
 	new->number = champ->number;
+	new->carry = champ->carry;
 	new->bytes = NULL;
 	new->data = NULL;
 	new->params = NULL;

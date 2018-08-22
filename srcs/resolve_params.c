@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 20:51:11 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/19 13:37:10 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 12:40:43 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,33 @@
 **	Set first bit of n for first param, second bit for second param etc.
 */
 
-void	resolve_params(t_champ *champ, t_params *param, int n)
+int	resolve_params(t_champ *champ, t_params *param, int n)
 {
+	int		reg;
+
 	if (n & 1 && (champ->encoding_byte & 192) == 64)
-		param->p1 = (int)champ->reg[check_reg(param->p1 - 1)];
+	{
+		reg = check_reg(param->p1);
+		if (reg)
+			param->p1 = (int)champ->reg[reg - 1];
+		else
+			return (0);
+	}
 	if (n & 2 && (champ->encoding_byte & 48) == 16)
-		param->p2 = (int)champ->reg[check_reg(param->p2 - 1)];
+	{
+		reg = check_reg(param->p2);
+		if (reg)
+			param->p2 = (int)champ->reg[reg - 1];
+		else
+			return (0);
+	}
 	if (n & 4 && (champ->encoding_byte & 12) == 4)
-		param->p3 = (int)champ->reg[check_reg(param->p3 - 1)];
+	{
+		reg = check_reg(param->p3);
+		if (reg)
+			param->p3 = (int)champ->reg[reg - 1];
+		else
+			return (0);
+	}
+	return (1);
 }
