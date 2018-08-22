@@ -6,7 +6,7 @@
 /*   By: yabdulha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 20:03:59 by yabdulha          #+#    #+#             */
-/*   Updated: 2018/08/22 13:34:52 by yabdulha         ###   ########.fr       */
+/*   Updated: 2018/08/22 19:56:56 by yabdulha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void			op_lfork(t_vm *vm, t_champ *champ)
 	t_champ	*new;
 
 	new = copy_champ(vm, champ);
+	free(champ->params);
 	champ->params = init_params(vm);
 	champ->pc_tmp = champ->pc;
 	move_pc(&(champ->pc_tmp), 1);
