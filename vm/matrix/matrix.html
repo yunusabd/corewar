@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <meta charset="utf-8">
+    <title>Corewar Matrix</title>
+    <link rel="stylesheet" href="matrix.css">
+    <script src="memory.js"></script>
+        <body>
+            <div id="wrapper">
+                <div id="container"></div>
+                <div id="status_box"></div>
+                <div id="players_box_title">uploaded</div>
+                <div id="players_box">
+                    <div id="player0" class="player_box">
+                        <div id="player_profile0" class="player_profile"></div>
+                        <div id="player_name0" class="player_name"></div>
+                        <div id="player_live0" class="player_live"></div>
+                    </div>
+                    <div id="player1" class="player_box">
+                        <div id="player_profile1" class="player_profile"></div>
+                        <div id="player_name1" class="player_name"></div>
+                        <div id="player_live1" class="player_live"></div>
+                    </div>
+                    <div id="player2" class="player_box">
+                        <div id="player_profile2" class="player_profile"></div>
+                        <div id="player_name2" class="player_name"></div>
+                        <div id="player_live2" class="player_live"></div>
+                    </div>
+                    <div id="player3" class="player_box">
+                        <div id="player_profile3" class="player_profile"></div>
+                        <div id="player_name3" class="player_name"></div>
+                        <div id="player_live3" class="player_live"></div>
+                    </div>
+                </div>
+                <div id="operations_box_title">operations data</div>
+                <div id="operations_box">
+                    <div id="op_c1" class="op">ア</div>
+                    <div id="op_c2" class="op">イ</div>
+                    <div id="op_c3" class="op">ウ</div>
+                    <div id="op_c4" class="op">エ</div><br>
+                    <div id="op_c5" class="op">オ</div>
+                    <div id="op_c6" class="op">カ</div>
+                    <div id="op_c7" class="op">ガ</div>
+                    <div id="op_c8" class="op">キ</div><br>
+                    <div id="op_c9" class="op">ギ</div>
+                    <div id="op_c10" class="op">ク</div>
+                    <div id="op_c11" class="op">グ</div>
+                    <div id="op_c12" class="op">ケ</div><br>
+                    <div id="op_c13" class="op">ゲ</div>
+                    <div id="op_c14" class="op">コ</div>
+                    <div id="op_c15" class="op">ゴ</div>
+                    <div id="op_c16" class="op">サ</div>
+                </div>
+                <div id="ops_list_box"></div>
+                <div id = "cycle_box">
+                    <div class="triangle" id="tri1">◣</div>
+                    <div class="triangle" id="tri2">◣</div>
+                    <div class="triangle" id="tri3">◣</div>
+                    <div class="triangle" id="tri4">◣</div>
+                    <div id="outer_circle"></div>
+                    <div id="outer_circle2"></div>
+                    <div id="inner_circle">
+                        <br><br>CTD<br>
+                        <div class="line_div" id="cycle_to_die">1536</div>
+                        <div id="inner_circle2"></div>
+                    </div>
+                    <div id="cycle_info">C<div class="line_div" id="cycle">0</div></div>
+                    <div class="line_draw" id="line_draw1"></div>
+                    <div id="process_info">P<div class="line_div" id="processes">0</div></div>
+                    <div id="data_box">
+                        cycle delta: 50<br><br>
+                        nbr live: 21<br><br>
+                        max checks: 10
+                        </div>
+                </div>
+                <div class="line_draw" id="line_draw2"></div>
+                <div id="cycle_box_title">cycle data</div>
+                <div id="speed_box">
+                        <div id="speedcircle"><div id="speedcircle2"></div></div>
+                    <div id="speed1" class="speed_bar"></div>
+                    <div id="speed2" class="speed_bar"></div>
+                    <div id="speed3" class="speed_bar"></div>
+                    <div id="speed4" class="speed_bar"></div>
+                    <div id="speed5" class="speed_bar"></div>
+                    <div id="speed6" class="speed_bar"></div>
+                    <div id="speed7" class="speed_bar"></div>
+                    <div id="speed8" class="speed_bar"></div>
+                </div>
+                <div id ="speed_data">12.5%</div> 
+            </div>
+            <div id="game_over">EXECUTION COMPLETE</div>
+        </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="matrix.js"></script>
+</html>
