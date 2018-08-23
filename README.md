@@ -1,13 +1,12 @@
 # corewar
-Work in progress, together with jszabo and ghaddad
-
-Current status:
+Corewar is a programming game, where programs (*champions*) with a special set of instructions are executed inside a virtual machine (*vm*).
+The *champions* utilize these instructions to compete for the vm's memory and ultimately defeat their opponents.
 
 ![Progress](https://github.com/yunusabd/corewar/raw/master/resources/Debug.gif "Progress")
 
-Loading champions into virtual machine - executing STI, AND, LIVE, ZJMP commands - dumping each cycle for a simple visualizer.
+At the beginning of the game, each *champions* code gets loaded into the vm at equal distance from each other. Then the vm places a process at the beginning of the code of each champion. The process moves through the code and executes the instructions.
 
-The elements in this array each represent an operation of the vm, with the following attributes:
+All the possible instructions, along with their corresponding parameters, can be seen in this array, in the following order:
 Name of the operation, number of parameters, types of parameters, opcode, description, encoding byte yes\no, half size yes\no.
 
 ```
