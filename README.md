@@ -1,10 +1,18 @@
 # corewar
 Corewar is a programming game, where programs (*champions*) with a special set of instructions are executed inside a virtual machine (*vm*).
-The *champions* utilize these instructions to compete for the vm's memory and ultimately defeat their opponents.
+The champions utilize these instructions to compete for the vm's memory and ultimately defeat their opponents.
 
 ![Progress](https://github.com/yunusabd/corewar/raw/master/resources/Debug.gif "Progress")
 
-At the beginning of the game, each *champions* code gets loaded into the vm at equal distance from each other. Then the vm places a process at the beginning of the code of each champion. The process moves through the code and executes the instructions.
+At the beginning of the game, each champions' code gets loaded into the vm at equal distance from each other. Then the vm places a process at the beginning of the code of each champion. The process moves through the code and executes the instructions. Each process has at its disposal a number of *registers*, that it can use to store data (by default 16 registers à 4 bytes). The first of these registers holds the player number assigned by the vm. For example, a champion can copy its player number into the vm, to call *live* for itself.
+
+In terms of bytecode, it would look like this: 03 70 01 00 06 01 00 00 
+- 03 is the opcode for *st*, which writes bytes from the register into the vm or another register.
+- 70 is the encoding byte, which stores information about the type of parameters. 70 in hex is 0111 0000, that gets interpreted from the left 2 bits at a time. So the first parameter is 01, which means register, the second is 11, which means indirect. In this case, there is no third parameter, and in no case there is a fourth parameter.
+- 01 is the register to read from
+- 00 06 is the indirect value to write to, in relation to the position of the program counter, which is at 03.
+
+While at the beginning each champion has only one process executing the code, there are instructions to clone a process and create multiple 
 
 All the possible instructions, along with their corresponding parameters, can be seen in this array, in the following order:
 Name of the operation, number of parameters, types of parameters, opcode, description, encoding byte yes\no, half size yes\no.
