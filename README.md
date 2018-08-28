@@ -5,10 +5,10 @@ This project is a 42 school project, and it differs from the original game subst
 
 ![Progress](https://github.com/yunusabd/corewar/raw/master/resources/Debug.gif "Progress")
 
-1. How does the game work?
-2. How are instructions executed?
-3. Which instructions are possible?
-4. Differences between the original game and the school project
+1. [How does the game work?](#how-does-the-game-work)
+2. [How are instructions executed?](#how-are-instructions-executed)
+3. [Which instructions are possible?](#which-instructions-are-possible)
+4. [Differences between the original game and the school project](#differences-between-the-original-game-and-the-school-project)
 
 ## How does the game work
 
