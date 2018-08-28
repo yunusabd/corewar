@@ -1,10 +1,20 @@
 # corewar
 Corewar is a programming game, where programs (*champions*) with a special set of instructions are executed inside a virtual machine (*vm*).
 The champions utilize these instructions to compete for the vm's memory and ultimately defeat their opponents.
+This project is a 42 school project, and it differs from the original game substantially.
 
 ![Progress](https://github.com/yunusabd/corewar/raw/master/resources/Debug.gif "Progress")
 
+1. How does the game work?
+2. How are instructions executed?
+3. Which instructions are possible?
+4. Differences between the original game and the school project
+
+## How does the game work
+
 At the beginning of the game, each champions' code gets loaded into the vm at equal distance from each other. The vm then places a process at the beginning of the code of each champion. The process moves through the code and executes the instructions. Instructions have different 'costs' measured in execution cycles. The most powerful of the instructions, *lfork*, takes 1000 cycles before execution, time in which the process is dormant and not doing anything. While creating a champion, this is one aspect to take into consideration.
+
+## How are instructions executed?
 
 Each process has at its disposal a number of *registers*, that it can use to store data (by default 16 registers à 4 bytes). The first of these registers holds the player number assigned by the vm. For example, a process can copy its player number into the vm, to call *live* for that player:
 
@@ -19,6 +29,8 @@ The process sleeps for 5 cycles and then writes the number from its register ```
 The process then jumps to the next instruction ```01```, *live*. Live doesn't have an encoding byte, it just takes one direct parameter. So, the process will sleep for 10 cycles and then call live for player 3, which is itself. Note that any program counter landing on that particular instruction will call *live* for that player. Conversely, it is also possible to change the first register of any process, if you have an instruction for that in the vm and the process lands on that.
 
 While at the beginning each champion has only one process, there are instructions to clone a process and create multiple processes, which inherit their parents' registers.
+
+## Which instructions are possible?
 
 All the possible instructions, along with their corresponding parameters, can be seen in this array, in the following order:
 Name of the operation, number of parameters, types of parameters, opcode, description, encoding byte yes\no, half size yes\no.
@@ -51,3 +63,6 @@ t_op    g_op_tab[17] =
     {0, 0, {0}, 0, 0, 0, 0, 0}
 };
 ```
+
+## Differences between the original game and the school project
+//TODO
