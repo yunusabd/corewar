@@ -65,4 +65,6 @@ t_op    g_op_tab[17] =
 ```
 
 ## Differences between the original game and the school project
-//TODO
+I'd say that 42's corewar is a simplified version of the original game. The concepts of 'live'-calls and 'cycles to die' don't exist in the original. Consequently, ties are not possible in 42's version, as the player who last called live wins.
+42's corewar puts constrains on operations like fork or jump, so that the process can only jump within a confined space. For some operations, there are 'long' versions (e.g. 'long fork') which are more expensive, but don't have this limitations.
+Also, some mathematical operations are not available, like modulo, division and multiplication. 
